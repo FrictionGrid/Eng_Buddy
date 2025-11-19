@@ -1,0 +1,16 @@
+# Robots.txt for EngBuddy
+# English Tutor Platform Thailand
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /storage/
+
+# Sitemap
+Sitemap: http://127.0.0.1:8000/sitemap.xml
+
+# Crawl-delay (optional - ถ้ามีปัญหา server โหลดมาก)
+# Crawl-delay: 1

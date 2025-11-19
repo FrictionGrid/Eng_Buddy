@@ -1,0 +1,126 @@
+@extends('tutor_layout')
+
+@section('title', 'EngBuddy | หาติวเตอร์สอนพิเศษภาษาอังกฤษ หาครูสอนพิเศษ เรียนพิเศษตัวต่อตัว')
+
+@section('content')
+
+  <!-- Banner -->
+    <header id="home" class="hero">
+        <div class="container hero-inner">
+            <div>
+                <h1>หาติวเตอร์สอนพิเศษภาษาอังกฤษ</h1>
+                <p>งานสอนพิเศษวิชาภาษาอังกฤษ ทั้งกรุงเทพฯ และต่างจังหวัด<br>ร่วมเป็นติวเตอร์คุณภาพ
+                    สร้างรายได้เสริมระหว่างเรียนและทำงาน</p>
+                <a class="btn" href="/Tutor/register"><span>สมัครคลิกที่นี่</span></a>
+            </div>
+            <div class="illus" aria-hidden="true"> <img
+                      src="{{ asset('images/tutor_teacher.png') }}"
+                    alt="นักศึกษาสอนพิเศษภาษาอังกฤษ EngBuddy" class="person"> </div>
+    </header>
+
+    <!-- FEATURES -->
+    <section class="container">
+        <div class="features">
+            <article class="feature">
+                <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="#0a7a2a" stroke-width="1.8">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg></div>
+                <div>
+                    <h3>ปลอดภัย มั่นใจ รายได้ดี</h3>
+                    <p>งานคัดสรรพร้อมรายละเอียดชัดเจน ตรวจสอบข้อมูลได้</p>
+                </div>
+            </article>
+            <article class="feature">
+                <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="#0a7a2a" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg></div>
+                <div>
+                    <h3>ติวเตอร์มีทีมฯ ช่วยเหลือทันที</h3>
+                    <p>ซัพพอร์ต 24 ชม. ผ่าน LINE / โทร</p>
+                </div>
+            </article>
+            <article class="feature">
+                <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="#0a7a2a" stroke-width="1.8">
+                        <path d="M21 15a4 4 0 0 1-4 4H7a4 4 0 0 1 0-8h10a4 4 0 0 1 4 4z" />
+                        <path d="M7 15v-8a4 4 0 0 1 8 0v8" />
+                    </svg></div>
+                <div>
+                    <h3>คืนเงินภายใน 24 ชม. เมื่อจองถูกยกเลิก</h3>
+                    <p>ความเชื่อมั่นและโปร่งใสคือหัวใจของเรา</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- JOBS TABLE -->
+    <section id="jobs" class="container">
+        <div class="card">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>วิชา</th>
+                        <th>สถานที่สอน</th>
+                        <th>วันเรียน</th>
+                        <th>รหัสงาน</th>
+                    </tr>
+                </thead>
+                <tbody id="homepage-courses">
+                    @forelse($courses as $course)
+                    <tr>
+                        <td>
+                            <strong>{{ $course->subject }}</strong>
+                            @if($course->description)
+                                {{ $course->description }}
+                            @endif
+                            @if($course->rate)
+                                <div style="color:#0a7a2a;font-weight:bold;margin-top:4px;">฿{{ number_format($course->rate) }} / ชม.</div>
+                            @endif
+                        </td>
+                        <td>{{ $course->location }}</td>
+                        <td>{{ $course->day }} {{ $course->time }}</td>
+                        <td class="code">
+                            {{ $course->job_code }}
+                            <span class="pill">{{ $course->status }}</span>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" style="text-align:center;padding:40px;color:#999;">
+                            ยังไม่มีงานสอนในขณะนี้
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="seeall"><a class="btn" href="/Tutor/course">ดูงานสอนทั้งหมด</a></div>
+    </section>
+
+    <section class="container social-section">
+        <p class="social-text">
+            เพียงกรอก <a href="/Tutor/register">สมัครติวเตอร์</a> แล้วเลือกงานสอนติดต่อเราที่
+        </p>
+        <div class="social-buttons">
+            <a href="#" class="btn-line">
+                <div class="icon">LINE</div>
+                <span>@EngBuddy</span>
+            </a>
+            <a href="#" class="btn-fb">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#fff"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2v-2c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.3h-1.1c-1.1 0-1.4.7-1.4 1.4v1.3h2.5l-.4 3h-2.1v7A10 10 0 0 0 22 12z" />
+                    </svg>
+                    <span>EngBuddy</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+@endsection
