@@ -1,0 +1,1025 @@
+/* ===========================================
+   RESPONSIVE STYLES FOR MOBILE & TABLET
+   =========================================== */
+
+/* ===== HAMBURGER MENU STYLES ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 3px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--card);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.mobile-menu-overlay.active .mobile-menu {
+    transform: translateX(0);
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.mobile-menu-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-menu {
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.mobile-menu-item {
+    padding: 14px 20px;
+    color: var(--ink);
+    font-weight: 600;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s ease;
+}
+
+.mobile-menu-item:hover {
+    background: var(--bg);
+}
+
+.mobile-menu-cta {
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    color: #fff !important;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.mobile-menu-logout {
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ===== TABLET BREAKPOINT (768px - 1024px) ===== */
+@media (max-width: 1024px) {
+    .container {
+        width: min(1100px, 94vw);
+    }
+
+    /* Show hamburger menu */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide desktop menu */
+    .tabs {
+        display: none;
+    }
+
+    .menu > .login {
+        display: none;
+    }
+
+    .dropdown {
+        display: none;
+    }
+
+    /* Hero Section */
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 32px 0;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 0 0 20px;
+    }
+
+    /* ซ่อนรูปบน Tablet เช่นกัน */
+    .illus {
+        display: none;
+    }
+
+    .person {
+        display: none;
+    }
+
+    /* Features Grid */
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .feature {
+        padding: 16px;
+    }
+
+    /* Reviews */
+    .reviews {
+        padding: 50px 20px;
+    }
+
+    .review-scroll {
+        gap: 12px;
+    }
+
+    .review-scroll img {
+        height: 200px;
+    }
+
+    /* Sections */
+    .pricing,
+    .contact,
+    .courses {
+        padding: 50px 20px;
+    }
+
+    /* Course Grid */
+    .course-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 24px;
+    }
+
+    .courses-modern-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+
+    /* Form Rows */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .cc-apply-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* CTA Section */
+    .cc-cta__inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .cc-cta__actions {
+        justify-content: center;
+    }
+
+    /* Footer */
+    .foot {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding: 32px 0;
+    }
+
+    .foot > div:first-child {
+        grid-column: 1 / -1;
+    }
+
+    /* Table */
+    .table-wrap {
+        overflow-x: auto;
+    }
+
+    .jobs-table {
+        min-width: 600px;
+    }
+}
+
+/* ===== MOBILE BREAKPOINT (max-width: 768px) ===== */
+@media (max-width: 768px) {
+    /* Typography */
+    h2 {
+        font-size: 22px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+
+    .page-title h1 {
+        font-size: 1.6rem;
+    }
+
+    /* Sections */
+    section {
+        padding: 0 16px;
+    }
+
+    .reviews h2,
+    .pricing h2,
+    .contact h2,
+    .features h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Navigation */
+    .nav {
+        padding: 12px 0;
+    }
+
+    .brand-text {
+        font-size: 16px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 0 16px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 32px 0 28px;
+        gap: 0;
+    }
+
+    .hero h1 {
+        font-size: 22px;
+        line-height: 1.35;
+        margin: 0 0 12px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0 0 18px;
+        color: #dbeafe;
+    }
+
+    /* ซ่อนรูปบนมือถือ */
+    .illus {
+        display: none;
+    }
+
+    .person {
+        display: none;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero .btn {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+
+    .btn {
+        padding: 11px 18px;
+    }
+
+    /* Features */
+    .features {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 24px 0;
+        padding: 0 8px;
+    }
+
+    .feature {
+        grid-template-columns: 52px 1fr;
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .feature h3 {
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .feature p {
+        font-size: 13px;
+        margin: 4px 0 0;
+    }
+
+    .ico {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+    }
+
+    /* Cards & Grid */
+    .grid {
+        gap: 16px;
+    }
+
+    .card {
+        padding: 20px 16px;
+        text-align: center;
+    }
+
+    .card img {
+        width: 48px;
+        margin-bottom: 8px;
+    }
+
+    .card h4 {
+        font-size: 16px;
+        margin: 8px 0 6px;
+    }
+
+    .card p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+        margin-top: 30px;
+    }
+
+    .foot {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 0;
+    }
+
+    .foot > div {
+        text-align: left;
+    }
+
+    .foot > div:first-child {
+        text-align: center;
+    }
+
+    .foot > div:first-child > div:first-child {
+        justify-content: center;
+    }
+
+    .footer-logo {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .brand-texttwo {
+        font-size: 20px;
+    }
+
+    .footer-desc {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-top: 10px;
+    }
+
+    .foot h4 {
+        font-size: 18px;
+        margin: 0 0 16px;
+        font-weight: 700;
+    }
+
+    .foot ul li {
+        padding: 9px 0;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .foot a {
+        transition: color 0.2s ease;
+        display: inline-block;
+    }
+
+    .foot a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .copyright {
+        padding: 18px 0;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+    }
+
+    /* Forms */
+    .student-section {
+        padding: 24px 20px;
+    }
+
+    .student-form-row input,
+    .student-form-row select,
+    .student-form-row textarea {
+        font-size: 14px;
+    }
+
+    /* Course Section */
+    .course-section {
+        padding: 40px 0;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .courses-modern-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .course-modern-card {
+        padding: 24px 20px;
+    }
+
+    /* Register Page */
+    .register-card {
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Login Page */
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .login-title::before,
+    .login-title::after {
+        width: 40px;
+    }
+
+    /* Apply Page */
+    .cc-steps {
+        gap: 16px;
+    }
+
+    .cc-step {
+        flex-direction: column;
+        padding: 18px 20px;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cc-step__num {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .cc-step h3 {
+        font-size: 16px;
+    }
+
+    .cc-step p {
+        font-size: 14px;
+    }
+
+    .cc-apply-steps {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .cc-apply-step {
+        justify-content: center;
+    }
+
+    /* Course Table */
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .controls .search input {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .select, .sort {
+        width: 100%;
+    }
+
+    .table-wrap {
+        padding: 0 0 3rem;
+    }
+
+    .jobs-table {
+        font-size: 14px;
+    }
+
+    .jobs-table th,
+    .jobs-table td {
+        padding: 10px 12px;
+    }
+
+    /* Modal */
+    .modal-card {
+        width: 95%;
+        padding: 20px;
+    }
+
+    /* CTA */
+    .cta-bar {
+        padding: 30px 16px;
+    }
+
+    .cta-inner {
+        text-align: center;
+    }
+
+    .cta-title {
+        font-size: 1.1rem;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .social-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Pricing Table */
+    .pricing {
+        padding: 40px 16px;
+    }
+
+    .pricing table {
+        font-size: 14px;
+    }
+
+    .pricing th,
+    .pricing td {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .pricing th {
+        font-size: 15px;
+    }
+
+    /* Contact Section */
+    .contact {
+        padding: 40px 16px;
+    }
+
+    .contact h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .contact-box {
+        flex-direction: column;
+        gap: 28px;
+        align-items: center;
+    }
+
+    .contact img {
+        width: 200px;
+        height: 200px;
+        border-width: 2px !important;
+    }
+
+    .steps {
+        text-align: left;
+        width: 100%;
+    }
+
+    .steps p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* Review Scroll */
+    .review-scroll img {
+        height: 180px;
+    }
+
+    /* Social Section */
+    .social-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-line,
+    .btn-fb {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Dynamic Forms */
+    .dynamic-item {
+        padding: 16px;
+    }
+
+    .dynamic-item .remove-btn {
+        position: static;
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    /* Radio & Checkbox */
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+    .container {
+        width: min(1100px, 90vw);
+    }
+
+    /* Typography */
+    .hero h1 {
+        font-size: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+
+    /* Logo */
+    .logo {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+    }
+
+    .footer-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 0 12px;
+    }
+
+    .hero-inner {
+        padding: 28px 0 24px;
+        gap: 0;
+    }
+
+    .hero h1 {
+        font-size: 19px;
+        line-height: 1.4;
+        margin: 0 0 10px;
+    }
+
+    .hero p {
+        font-size: 13px;
+        line-height: 1.65;
+        margin: 0 0 16px;
+    }
+
+    /* รูปยังคงซ่อนอยู่บน small mobile */
+    .illus {
+        display: none;
+    }
+
+    .person {
+        display: none;
+    }
+
+    .hero .btn {
+        font-size: 14px;
+        padding: 11px 18px;
+    }
+
+    /* Buttons */
+    .btn {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .hero .btn {
+        font-size: 16px;
+        padding: 10px 18px;
+    }
+
+    /* Sections Padding */
+    .reviews,
+    .pricing,
+    .contact,
+    .courses,
+    .features {
+        padding: 36px 16px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    /* Review Section */
+    .review-scroll {
+        gap: 12px;
+        padding: 16px 0;
+    }
+
+    .review-scroll img {
+        height: 160px;
+        min-width: 250px;
+    }
+
+    /* Course Cards */
+    .course-icon {
+        font-size: 40px;
+    }
+
+    .course-title {
+        font-size: 20px;
+    }
+
+    .course-description {
+        font-size: 13px;
+        min-height: auto;
+    }
+
+    /* Contact Section - Small Mobile */
+    .contact img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .steps p {
+        font-size: 13px;
+    }
+
+    .steps .btn {
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    /* Forms */
+    .student-section {
+        padding: 20px 16px;
+    }
+
+    .student-title {
+        font-size: 1.5rem;
+    }
+
+    .register-title h1 {
+        font-size: 26px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        width: 260px;
+    }
+
+    /* Footer */
+    .foot {
+        gap: 28px;
+        padding: 28px 0;
+    }
+
+    .footer-logo {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+    }
+
+    .brand-texttwo {
+        font-size: 18px;
+    }
+
+    .footer-desc {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .foot h4 {
+        font-size: 17px;
+        margin: 0 0 14px;
+        font-weight: 700;
+    }
+
+    .foot ul li {
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    .copyright {
+        padding: 16px 0;
+        font-size: 13px;
+    }
+
+    /* Apply Page */
+    .cc-hero h1 {
+        font-size: 24px;
+    }
+
+    .cc-apply-page-title h1 {
+        font-size: 26px;
+    }
+
+    /* Table */
+    .table-wrap {
+        padding: 0 0 2rem;
+    }
+
+    .jobs-table {
+        font-size: 13px;
+        min-width: 500px;
+    }
+
+    .jobs-table th,
+    .jobs-table td {
+        padding: 10px 12px;
+    }
+
+    .jobs-table th {
+        font-size: 13px;
+    }
+
+    .pill {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    /* Social Section */
+    .social-section {
+        padding: 32px 16px;
+    }
+
+    .social-text {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .btn-line,
+    .btn-fb {
+        font-size: 14px;
+    }
+
+    .btn-line .icon,
+    .btn-fb .icon {
+        padding: 10px 14px;
+    }
+
+    .btn-line span,
+    .btn-fb span {
+        padding: 10px 16px;
+    }
+
+    /* Pager */
+    .pager button {
+        padding: 5px 8px;
+        font-size: 14px;
+    }
+}
+
+/* ===== LANDSCAPE MODE FOR MOBILE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .mobile-menu {
+        width: 240px;
+    }
+
+    .mobile-menu-item {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 24px 0;
+        gap: 0;
+    }
+
+    .hero h1 {
+        font-size: 20px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    /* ซ่อนรูปบน Landscape Mode ด้วย */
+    .illus {
+        display: none;
+    }
+
+    .person {
+        display: none;
+    }
+
+    section {
+        padding: 20px 16px;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .topbar,
+    .hamburger,
+    .mobile-menu-overlay,
+    footer,
+    .btn,
+    .cta-bar,
+    .social-section {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .container {
+        width: 100%;
+    }
+}

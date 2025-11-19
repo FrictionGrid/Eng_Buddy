@@ -110,6 +110,7 @@ footer {
         var(--footer-grad-2)
     );
     color: #c7d7f9;
+    padding: 0 16px;
 }
 
 .foot {
@@ -262,5 +263,35 @@ footer {
 .logout-btn:hover {
     background: #fef2f2;
     color: #dc2626;
+}
+
+/* Table Responsive */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+    overflow-x: hidden;
+}
+
+/* Image responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
 

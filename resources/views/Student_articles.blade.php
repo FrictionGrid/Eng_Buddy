@@ -18,62 +18,50 @@
     <h1 class="banner">บทความ</h1>
     <div class="container">
 
-    <!-- Category Filter -->
-    @if($categories->count() > 0)
-    <div style="margin-bottom:30px;">
-      <h3 style="margin-bottom:15px;color:#2c3e50;">หมวดหมู่</h3>
-      <div class="article-grid">
-        @foreach($categories as $cat => $count)
-        <a href="{{ route('articles.index', ['category' => $cat]) }}" class="article-box">
-          {{ $cat }} ({{ $count }})
-        </a>
-        @endforeach
-      </div>
-    </div>
-    @endif
+  
 
     <!-- Articles List -->
-    <h3 style="margin-bottom:20px;color:#2c3e50;">
+    <h3 class="article-list-title">
       @if(request('category'))
-        บทความในหมวด: {{ request('category') }}
-        <a href="{{ route('articles.index') }}" style="font-size:14px;color:#3498db;margin-left:10px;">[ดูทั้งหมด]</a>
+        <span>บทความในหมวด: {{ request('category') }}</span>
+        <a href="{{ route('articles.index') }}">[ดูทั้งหมด]</a>
       @else
-        บทความทั้งหมด
+        <span>บทความทั้งหมด</span>
       @endif
     </h3>
 
     @forelse($articles as $article)
-    <a href="{{ route('articles.show', $article->slug) }}" style="display:block;margin-bottom:30px;text-decoration:none;color:inherit;background:white;padding:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);transition:transform 0.2s;">
-      <div style="display:flex;gap:20px;align-items:start;">
+    <a href="{{ route('articles.show', $article->slug) }}" class="article-card">
+      <div class="article-card-inner">
         @if($article->image)
         <img src="{{ asset('storage/' . $article->image) }}"
              alt="ภาพประกอบบทความ {{ $article->title }} - {{ $article->category }}"
              loading="lazy"
-             style="width:200px;height:150px;object-fit:cover;border-radius:4px;">
+             class="article-card-image">
         @endif
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <span style="background:#3498db;color:white;padding:4px 12px;border-radius:4px;font-size:12px;">{{ $article->category }}</span>
+        <div class="article-card-content">
+          <div class="article-card-tags">
+            <span class="article-tag">{{ $article->category }}</span>
             @if($article->is_featured)
-            <span style="background:#e74c3c;color:white;padding:4px 12px;border-radius:4px;font-size:12px;">แนะนำ</span>
+            <span class="article-tag featured">แนะนำ</span>
             @endif
           </div>
-          <h3 style="font-size:20px;color:#2c3e50;margin-bottom:10px;">{{ $article->title }}</h3>
-          <p style="color:#7f8c8d;line-height:1.6;margin-bottom:10px;">{{ Str::limit($article->short_description, 150) }}</p>
-          <div style="display:flex;gap:15px;font-size:13px;color:#95a5a6;">
+          <h3 class="article-card-title">{{ $article->title }}</h3>
+          <p class="article-card-description">{{ Str::limit($article->short_description, 150) }}</p>
+          <div class="article-card-meta">
             @if($article->author)
-            <span>✍️ {{ $article->author }}</span>
+            <span>{{ $article->author }}</span>
             @endif
-            <span>📅 {{ $article->published_at->format('d/m/Y') }}</span>
-            <span>👁️ {{ number_format($article->views) }} ครั้ง</span>
+            <span>{{ $article->published_at->format('d/m/Y') }}</span>
+            <span>{{ number_format($article->views) }} ครั้ง</span>
           </div>
         </div>
       </div>
     </a>
     @empty
-    <div style="text-align:center;padding:60px 20px;color:#999;">
-      <p style="font-size:18px;">ยังไม่มีบทความในขณะนี้</p>
-      <p>กรุณาติดตามบทความใหม่ๆ เร็วๆ นี้</p>
+    <div class="article-empty">
+      <p class="article-empty-title">ยังไม่มีบทความในขณะนี้</p>
+      <p class="article-empty-subtitle">กรุณาติดตามบทความใหม่ๆ เร็วๆ นี้</p>
     </div>
     @endforelse
 

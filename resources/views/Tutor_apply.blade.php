@@ -100,12 +100,7 @@
                     <a class="cc-btn cc-btn--secondary" href="/Tutor/course">งานสอนทั้งหมด</a>
                 </div>
             </div>
-            <div>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                    <a class="cc-btn" style="background:linear-gradient(180deg,#00d400,#00c300)" href="#" aria-label="LINE @EngBuddy">LINE <span class="cc-chip">@EngBuddy</span></a>
-                    <a class="cc-btn" style="background:linear-gradient(180deg,#4875d1,#4267B2)" href="#" aria-label="Facebook EngBuddy">Facebook <span class="cc-chip">EngBuddy</span></a>
-                </div>
-            </div>
+        
         </div>
     </section>
 

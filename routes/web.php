@@ -8,6 +8,7 @@ use App\Http\Controllers\Tutor_courses;
 use App\Http\Controllers\Tutor_Home;
 use App\Http\Controllers\Student_articles;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\RobotsTxtController;
 
 Route::get('Tutor/layout', function () {
     return view('Tutor_layout');
@@ -62,3 +63,4 @@ Route::get('/student/articles/{slug}', [Student_articles::class, 'show'])->name(
 
 // SEO Routes
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [RobotsTxtController::class, 'index'])->name('robots');

@@ -174,20 +174,9 @@
 </style>
 
 <div class="article-detail">
-  <!-- Breadcrumbs -->
-  <nav aria-label="breadcrumb" style="margin-bottom:20px;">
-    <ol style="display:flex;gap:8px;flex-wrap:wrap;padding:12px 0;margin:0;list-style:none;font-size:14px;color:#7f8c8d;">
-      <li><a href="{{ url('/student/home') }}" style="color:#3498db;text-decoration:none;">หน้าแรก</a></li>
-      <li style="color:#bdc3c7;">/</li>
-      <li><a href="{{ route('articles.index') }}" style="color:#3498db;text-decoration:none;">บทความ</a></li>
-      <li style="color:#bdc3c7;">/</li>
-      <li><a href="{{ route('articles.index', ['category' => $article->category]) }}" style="color:#3498db;text-decoration:none;">{{ $article->category }}</a></li>
-      <li style="color:#bdc3c7;">/</li>
-      <li style="color:#2c3e50;font-weight:500;">{{ Str::limit($article->title, 50) }}</li>
-    </ol>
-  </nav>
 
-  <a href="{{ route('articles.index') }}" class="back-link">← กลับไปหน้ารายการบทความ</a>
+
+ 
 
   <div class="detail-card">
     @if($article->image)
@@ -255,94 +244,4 @@
 
 @endsection
 
-@push('seo_schema')
-<!-- Article Schema (JSON-LD) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ $article->title }}",
-  "description": "{{ strip_tags($article->short_description ?? Str::limit($article->content, 200)) }}",
-  @if($article->image)
-  "image": "{{ asset('storage/' . $article->image) }}",
-  @endif
-  "author": {
-    "@type": "Person",
-    "name": "{{ $article->author ?? 'EngBuddy Team' }}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "EngBuddy",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ asset('images/logo.png') }}"
-    }
-  },
-  "datePublished": "{{ $article->published_at->toIso8601String() }}",
-  "dateModified": "{{ $article->updated_at->toIso8601String() }}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ route('articles.show', $article->slug) }}"
-  },
-  "articleSection": "{{ $article->category }}",
-  "keywords": "{{ $article->category }}, ภาษาอังกฤษ, {{ implode(', ', array_slice(explode(' ', $article->title), 0, 5)) }}",
-  "wordCount": {{ str_word_count(strip_tags($article->content)) }},
-  "inLanguage": "th-TH"
-}
-</script>
 
-<!-- Breadcrumb Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "หน้าแรก",
-      "item": "{{ url('/student/home') }}"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "บทความ",
-      "item": "{{ route('articles.index') }}"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{ $article->category }}",
-      "item": "{{ route('articles.index', ['category' => $article->category]) }}"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "{{ $article->title }}",
-      "item": "{{ route('articles.show', $article->slug) }}"
-    }
-  ]
-}
-</script>
-
-<!-- Organization Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "EngBuddy",
-  "url": "{{ url('/') }}",
-  "logo": "{{ asset('images/logo.png') }}",
-  "description": "แพลตฟอร์มหาติวเตอร์ภาษาอังกฤษตัวต่อตัวและออนไลน์ทั่วไทย",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+66-61-825-5910",
-    "contactType": "Customer Service"
-  },
-  "sameAs": [
-    "https://www.facebook.com/EngBuddy",
-    "https://line.me/ti/p/@EngBuddy"
-  ]
-}
-</script>
-@endpush

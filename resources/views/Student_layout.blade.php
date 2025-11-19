@@ -13,13 +13,22 @@
 
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
 
-    @stack('seo_schema')
+    <!-- Preconnect for Performance (Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+
+
+
 
     <link rel="stylesheet" href="{{ asset('css/color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Tutor_layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Student_main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
- 
+
 </head>
 
 <body>
@@ -27,7 +36,7 @@
     <div class="topbar" role="navigation" aria-label="Primary navigation">
         <div class="container nav">
 
-          
+
             <div class="brand">
                 <div class="logo">EE</div>
                 <div>
@@ -38,19 +47,46 @@
 
             <nav class="menu">
 
-            
+
                 <div class="tabs">
-                <a class="tab" href="/student/home">หน้าแรก</a>
+                    <a class="tab" href="/student/home">หน้าแรก</a>
                     <a class="tab" href="/student/course">หลักสูตร</a>
                     <a class="tab" href="/student/apply">ขั้นตอนการสมัคร</a>
                     <a class="tab" href="/student/articles">บทความ</a>
                     <a class="tab" href="/student/promotion">โปรโมชั่น</a>
                 </div>
 
-        
+
                 <a class="login" href="/Tutor/home">สำหรับติวเตอร์</a>
 
+                <!-- Hamburger Button (Mobile Only) -->
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="brand">
+                    <div class="logo">EE</div>
+                    <div class="brand-text">EngBuddy</div>
+                </div>
+                <button class="close-menu" aria-label="Close menu">&times;</button>
+            </div>
+            <nav class="mobile-menu-nav">
+                <a href="/student/home" class="mobile-menu-item">🏠 หน้าแรก</a>
+                <a href="/student/course" class="mobile-menu-item">📚 หลักสูตร</a>
+                <a href="/student/apply" class="mobile-menu-item">📝 ขั้นตอนการสมัคร</a>
+                <a href="/student/articles" class="mobile-menu-item">📰 บทความ</a>
+                <a href="/student/promotion" class="mobile-menu-item">🎁 โปรโมชั่น</a>
+                <a href="/Tutor/home" class="mobile-menu-item mobile-menu-cta">👨‍🏫 สำหรับติวเตอร์</a>
             </nav>
         </div>
     </div>
@@ -101,17 +137,59 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Dropdown Menu (existing code)
     const dropdown = document.querySelector('.dropdown');
     const button = document.querySelector('.dropbtn');
 
-    button.addEventListener('click', function (e) {
-        e.stopPropagation();
-        dropdown.classList.toggle('show');
-    });
+    if (dropdown && button) {
+        button.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+        });
 
-    // กดนอก dropdown → ปิดหมด
-    document.addEventListener('click', function () {
-        dropdown.classList.remove('show');
+        document.addEventListener('click', function () {
+            dropdown.classList.remove('show');
+        });
+    }
+
+    // Hamburger Menu (new code)
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const closeMenu = document.querySelector('.close-menu');
+    const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+
+    // Open mobile menu
+    if (hamburger) {
+        hamburger.addEventListener('click', function() {
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close mobile menu
+    if (closeMenu) {
+        closeMenu.addEventListener('click', function() {
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close when clicking overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileMenuOverlay) {
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Close when clicking menu item
+    mobileMenuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
     });
 });
 </script>
