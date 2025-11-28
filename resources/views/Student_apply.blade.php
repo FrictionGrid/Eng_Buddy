@@ -21,34 +21,53 @@
   <section class="student-section student-form-wrap">
     <p><strong>2. กรอกรายละเอียดด้านล่าง ทางสถาบันจะติดต่อกลับภายใน 12 ชั่วโมง</strong></p>
 
-    <form class="student-form">
+    @if(session('success'))
+      <div class="alert alert-success">
+        <div>
+          <strong style="font-size: 18px; display: block; margin-bottom: 4px;">ส่งข้อมูลสำเร็จ!</strong>
+          {{ session('success') }}
+        </div>
+      </div>
+    @endif
+
+    @if($errors->any())
+      <div class="alert alert-error">
+        <div>
+          <strong style="font-size: 18px; display: block; margin-bottom: 4px;">พบข้อผิดพลาด</strong>
+          <ul>
+            @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+    @endif
+
+    <form class="student-form" method="POST" action="{{ route('student.apply.store') }}">
+      @csrf
+
       <div class="student-form-row">
         <label>ชื่อ-นามสกุล<span class="req">*</span></label>
-        <input type="text" placeholder="กรอกชื่อ-นามสกุล">
+        <input type="text" name="full_name" placeholder="กรอกชื่อ-นามสกุล" value="{{ old('full_name') }}" required>
       </div>
 
       <div class="student-form-row">
-        <label>อีเมล<span class="req">*</span></label>
-        <input type="email" placeholder="กรอกอีเมล">
+        <label>LINE ID<span class="req"></span></label>
+        <input type="text" name="line_id" placeholder="กรอก LINE ID (ถ้ามี)" value="{{ old('line_id') }}">
       </div>
 
       <div class="student-form-row">
         <label>โทรศัพท์<span class="req">*</span></label>
-        <input type="tel" placeholder="กรอกเบอร์โทรศัพท์">
-      </div>
-
-      <div class="student-form-row">
-        <label>วิชาที่ต้องการหาติวเตอร์<span class="req">*</span></label>
-        <input type="text" placeholder="เช่น grammar Toeic">
+        <input type="tel" name="phone" placeholder="กรอกเบอร์โทรศัพท์" value="{{ old('phone') }}" required>
       </div>
 
       <div class="student-form-row">
         <label>เพศติวเตอร์<span class="req">*</span></label>
-        <select>
-          <option>-- เลือกเพศติวเตอร์ --</option>
-          <option>ชาย</option>
-          <option>หญิง</option>
-          <option>ไม่จำกัด</option>
+        <select name="tutor_gender" required>
+          <option value="">-- เลือกเพศติวเตอร์ --</option>
+          <option value="ชาย" {{ old('tutor_gender') == 'ชาย' ? 'selected' : '' }}>ชาย</option>
+          <option value="หญิง" {{ old('tutor_gender') == 'หญิง' ? 'selected' : '' }}>หญิง</option>
+          <option value="ไม่จำกัด" {{ old('tutor_gender') == 'ไม่จำกัด' ? 'selected' : '' }}>ไม่จำกัด</option>
         </select>
       </div>
 

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\Password;
 
 class Tutor_Register extends Controller
 {
@@ -24,9 +23,15 @@ class Tutor_Register extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-           
+
             'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/'
+            ],
 
 
             'first_name' => 'required|string|max:255',
@@ -40,7 +45,7 @@ class Tutor_Register extends Controller
 
             'id_card_image' => 'required|image|max:2048',
 
-       
+
             'qualifications' => 'required|array|min:1',
             'qualifications.*.degree_level' => 'required|string',
             'qualifications.*.field_of_study' => 'required|string|max:255',
@@ -62,6 +67,53 @@ class Tutor_Register extends Controller
 
             'accept_terms' => 'required|accepted',
             'accept_privacy' => 'required|accepted',
+        ], [
+            // Email
+            'email.required' => 'กรุณากรอกอีเมล',
+            'email.email' => 'รูปแบบอีเมลไม่ถูกต้อง',
+            'email.unique' => 'อีเมลนี้ถูกใช้งานแล้ว',
+
+            // Password
+            'password.required' => 'กรุณากรอกรหัสผ่าน',
+            'password.min' => 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร',
+            'password.confirmed' => 'รหัสผ่านไม่ตรงกัน',
+            'password.regex' => 'รหัสผ่านต้องประกอบด้วย ตัวพิมพ์ใหญ่ ตัวพิมพ์เล็ก ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยหนึ่งตัว',
+
+            // Personal Info
+            'first_name.required' => 'กรุณากรอกชื่อ',
+            'last_name.required' => 'กรุณากรอกนามสกุล',
+            'phone.required' => 'กรุณากรอกเบอร์โทรศัพท์',
+
+            // ID Card
+            'id_card_image.required' => 'กรุณาอัปโหลดรูปบัตรประชาชน',
+            'id_card_image.image' => 'ไฟล์ต้องเป็นรูปภาพเท่านั้น',
+            'id_card_image.max' => 'ไฟล์รูปต้องมีขนาดไม่เกิน 2MB',
+
+            // Qualifications
+            'qualifications.required' => 'กรุณากรอกข้อมูลวุฒิการศึกษาอย่างน้อย 1 รายการ',
+            'qualifications.*.degree_level.required' => 'กรุณาเลือกระดับการศึกษา',
+            'qualifications.*.field_of_study.required' => 'กรุณากรอกสาขาวิชา',
+            'qualifications.*.institution.required' => 'กรุณากรอกสถาบันการศึกษา',
+            'qualifications.*.gpa.required' => 'กรุณากรอก GPA',
+            'qualifications.*.gpa.numeric' => 'GPA ต้องเป็นตัวเลข',
+            'qualifications.*.gpa.min' => 'GPA ต้องมากกว่าหรือเท่ากับ 0',
+            'qualifications.*.gpa.max' => 'GPA ต้องไม่เกิน 4.00',
+
+            // Subjects
+            'subjects.required' => 'กรุณากรอกวิชาที่สอนได้อย่างน้อย 1 วิชา',
+            'subjects.*.subject_name.required' => 'กรุณากรอกชื่อวิชา',
+            'subjects.*.hourly_rate.required' => 'กรุณากรอกอัตราค่าสอน',
+            'subjects.*.hourly_rate.numeric' => 'อัตราค่าสอนต้องเป็นตัวเลข',
+            'subjects.*.hourly_rate.min' => 'อัตราค่าสอนต้องมากกว่า 0',
+
+            // Teaching Experience
+            'has_teaching_experience.required' => 'กรุณาระบุว่ามีประสบการณ์สอนหรือไม่',
+
+            // Terms
+            'accept_terms.required' => 'กรุณายอมรับข้อกำหนดและเงื่อนไข',
+            'accept_terms.accepted' => 'กรุณายอมรับข้อกำหนดและเงื่อนไข',
+            'accept_privacy.required' => 'กรุณายอมรับนโยบายความเป็นส่วนตัว',
+            'accept_privacy.accepted' => 'กรุณายอมรับนโยบายความเป็นส่วนตัว',
         ]);
 
         DB::beginTransaction();
@@ -130,15 +182,16 @@ class Tutor_Register extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('dashboard')
-                ->with('success', 'สมัครติวเตอร์สำเร็จ! โปรดรอการอนุมัติจากผู้ดูแลระบบ');
+            return redirect()->route('tutor.dashboard')
+                ->with('success', 'สมัครติวเตอร์สำเร็จ! โปรดรอการอนุมัติจากผู้ดูแลระบบ')
+                ->with('clear_draft', true);
 
         } catch (\Exception $e) {
             DB::rollBack();
 
             return back()->withErrors([
-                'error' => 'เกิดข้อผิดพลาด: ' . $e->getMessage()
-            ])->withInput();
+                'error' => 'เกิดข้อผิดพลาดในการสมัคร กรุณาลองใหม่อีกครั้ง'
+            ])->withInput($request->except(['password', 'password_confirmation', 'id_card_image']));
         }
     }
 

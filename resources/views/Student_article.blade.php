@@ -209,7 +209,7 @@
 
       <div class="detail-body">
         @if($article->content)
-          {!! nl2br(e($article->content)) !!}
+          {!! $article->content !!}
         @else
           <p>{{ $article->short_description }}</p>
         @endif

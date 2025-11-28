@@ -138,17 +138,19 @@
 
             @forelse($tutorProfile->subjects as $subject)
                 <div class="list-item">
-                    <div class="list-item-title">วิชา ID: {{ $subject->subject_id }}</div>
+                    <div class="list-item-title">{{ $subject->subject_name }}</div>
 
                     <div class="list-item-detail">
-                        ค่าสอน: {{ number_format($subject->hourly_rate, 2) }} บาท/ชั่วโมง
+                        <strong style="color: #27ae60;">฿{{ number_format($subject->hourly_rate, 0) }}</strong> บาท/ชั่วโมง
                         @if($subject->description)
-                            <br>{{ $subject->description }}
+                            <br><span style="color: #7f8c8d;">{{ $subject->description }}</span>
                         @endif
                     </div>
                 </div>
             @empty
-                <p style="color:#7f8c8d;">ยังไม่มีข้อมูลวิชาที่สอน</p>
+                <div style="text-align: center; padding: 20px; color: #95a5a6;">
+                    <p>ยังไม่มีข้อมูลวิชาที่สอน</p>
+                </div>
             @endforelse
         </div>
 

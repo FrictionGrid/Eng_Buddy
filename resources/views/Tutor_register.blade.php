@@ -43,7 +43,7 @@
           <div class="form-group">
             <label>รหัสผ่าน <span class="req">*</span></label>
             <input type="password" name="password" required>
-            <small>ต้องมีอย่างน้อย 8 ตัวอักษร</small>
+            <small>ต้องมีอย่างน้อย 8 ตัวอักษร (ประกอบด้วย ตัวพิมพ์ใหญ่ ตัวพิมพ์เล็ก ตัวเลข และสัญลักษณ์พิเศษ เช่น @#$_!)</small>
           </div>
         </div>
 
@@ -103,8 +103,12 @@
         <div class="form-row">
           <div class="form-group">
             <label>รูปบัตรประชาชน <span class="req">*</span></label>
-            <input type="file" name="id_card_image" accept="image/*" required>
+            <input type="file" name="id_card_image" id="id_card_image" accept="image/*" required onchange="previewImage(this)">
             <small>ไฟล์รูปไม่เกิน 2MB (รองรับ JPG, PNG)</small>
+            <div id="image-preview" style="display: none; margin-top: 10px;">
+              <img id="preview-img" src="" alt="Preview" style="max-width: 300px; max-height: 200px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+              <p id="file-name" style="margin-top: 5px; font-size: 12px; color: #666;"></p>
+            </div>
           </div>
         </div>
 
@@ -119,39 +123,49 @@
         <h2>3. วุฒิการศึกษา</h2>
 
         <div id="qualifications-container">
+          @php
+            $oldQualifications = old('qualifications', [[]]);
+          @endphp
+
+          @foreach($oldQualifications as $index => $qualification)
           <div class="dynamic-item qualification-item">
+            @if($index > 0)
+              <button type="button" class="remove-btn" onclick="this.parentElement.remove()">ลบ</button>
+            @endif
+
             <div class="form-row">
               <div class="form-group">
                 <label>ระดับการศึกษา <span class="req">*</span></label>
-                <select name="qualifications[0][degree_level]" required>
+                <select name="qualifications[{{ $index }}][degree_level]" required>
                   <option value="">เลือก...</option>
-                  <option value="bachelor">ปริญญาตรี</option>
-                  <option value="master">ปริญญาโท</option>
-                  <option value="phd">ปริญญาเอก</option>
-                  <option value="certificate">ประกาศนียบัตร</option>
-                  <option value="diploma">อนุปริญญา</option>
-                  <option value="other">อื่นๆ</option>
+                  <option value="bachelor" {{ old("qualifications.$index.degree_level") == 'bachelor' ? 'selected' : '' }}>ปริญญาตรี</option>
+                  <option value="master" {{ old("qualifications.$index.degree_level") == 'master' ? 'selected' : '' }}>ปริญญาโท</option>
+                  <option value="phd" {{ old("qualifications.$index.degree_level") == 'phd' ? 'selected' : '' }}>ปริญญาเอก</option>
+                  <option value="certificate" {{ old("qualifications.$index.degree_level") == 'certificate' ? 'selected' : '' }}>ประกาศนียบัตร</option>
+                  <option value="diploma" {{ old("qualifications.$index.degree_level") == 'diploma' ? 'selected' : '' }}>อนุปริญญา</option>
+                  <option value="other" {{ old("qualifications.$index.degree_level") == 'other' ? 'selected' : '' }}>อื่นๆ</option>
                 </select>
               </div>
 
               <div class="form-group">
                 <label>สาขาวิชา <span class="req">*</span></label>
-                <input type="text" name="qualifications[0][field_of_study]" required>
+                <input type="text" name="qualifications[{{ $index }}][field_of_study]" value="{{ old("qualifications.$index.field_of_study") }}" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>สถาบันการศึกษา <span class="req">*</span></label>
-                <input type="text" name="qualifications[0][institution]" required>
+                <input type="text" name="qualifications[{{ $index }}][institution]" value="{{ old("qualifications.$index.institution") }}" required>
               </div>
 
               <div class="form-group">
                 <label>GPA <span class="req">*</span></label>
-                <input type="text" name="qualifications[0][gpa]" pattern="[0-4]\.\d{2}" placeholder="0.00" inputmode="decimal" required>
+                <input type="number" name="qualifications[{{ $index }}][gpa]" value="{{ old("qualifications.$index.gpa") }}" min="0" max="4" step="0.01"  required>
               </div>
             </div>
           </div>
+          @endforeach
         </div>
 
         <button type="button" class="add-btn" onclick="addQualification()">+ เพิ่มวุฒิการศึกษา</button>
@@ -161,24 +175,34 @@
         <h2>4. วิชาที่สอนได้</h2>
 
         <div id="subjects-container">
+          @php
+            $oldSubjects = old('subjects', [[]]);
+          @endphp
+
+          @foreach($oldSubjects as $index => $subject)
           <div class="dynamic-item subject-item">
+            @if($index > 0)
+              <button type="button" class="remove-btn" onclick="this.parentElement.remove()">ลบ</button>
+            @endif
+
             <div class="form-row">
               <div class="form-group">
                 <label>วิชา <span class="req">*</span></label>
-                <input type="text" name="subjects[0][subject_name]"  required>
+                <input type="text" name="subjects[{{ $index }}][subject_name]" value="{{ old("subjects.$index.subject_name") }}" placeholder="เช่น ภาษาอังกฤษพื้นฐาน, IELTS, TOEIC" required>
               </div>
 
               <div class="form-group">
                 <label>อัตราค่าสอน (บาท/ชั่วโมง) <span class="req">*</span></label>
-                <input type="number" name="subjects[0][hourly_rate]" min="0" step="0.01" required>
+                <input type="number" name="subjects[{{ $index }}][hourly_rate]" value="{{ old("subjects.$index.hourly_rate") }}" min="0" step="0.01" required>
               </div>
             </div>
 
             <div class="form-group full">
               <label>รายละเอียดเพิ่มเติม</label>
-              <textarea name="subjects[0][description]"></textarea>
+              <textarea name="subjects[{{ $index }}][description]">{{ old("subjects.$index.description") }}</textarea>
             </div>
           </div>
+          @endforeach
         </div>
 
         <button type="button" class="add-btn" onclick="addSubject()">+ เพิ่มวิชาที่สอน</button>
@@ -190,8 +214,8 @@
         <div class="form-group">
           <label>ประสบการณ์สอนจริง <span class="req">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="has_teaching_experience" value="1" required> มีประสบการณ์</label>
-            <label><input type="radio" name="has_teaching_experience" value="0" required> ไม่มีประสบการณ์</label>
+            <label><input type="radio" name="has_teaching_experience" value="1" {{ old('has_teaching_experience') == '1' ? 'checked' : '' }} required> มีประสบการณ์</label>
+            <label><input type="radio" name="has_teaching_experience" value="0" {{ old('has_teaching_experience') == '0' ? 'checked' : '' }} required> ไม่มีประสบการณ์</label>
           </div>
         </div>
 
@@ -216,8 +240,8 @@
         <div class="form-group full">
           <label>ข้อตกลง <span class="req">*</span></label>
           <div class="terms-box">
-            <label><input type="checkbox" name="accept_terms" value="1" required> ยอมรับ <a href="{{ route('terms') }}" target="_blank">ข้อกำหนดและเงื่อนไข</a></label>
-            <label><input type="checkbox" name="accept_privacy" value="1" required> ยอมรับ <a href="{{ route('privacy') }}" target="_blank">นโยบายความเป็นส่วนตัว</a></label>
+            <label><input type="checkbox" name="accept_terms" value="1" {{ old('accept_terms') ? 'checked' : '' }} required> ยอมรับ <a href="{{ route('terms') }}" target="_blank">ข้อกำหนดและเงื่อนไข</a></label>
+            <label><input type="checkbox" name="accept_privacy" value="1" {{ old('accept_privacy') ? 'checked' : '' }} required> ยอมรับ <a href="{{ route('privacy') }}" target="_blank">นโยบายความเป็นส่วนตัว</a></label>
           </div>
         </div>
       </div>
@@ -231,83 +255,220 @@
 </div>
 
 <script>
-let qualificationCount = 1;
-let subjectCount = 1;
+// Initialize counts from existing items (from old() data)
+let qualificationCount = document.querySelectorAll('.qualification-item').length;
+let subjectCount = document.querySelectorAll('.subject-item').length;
 
+// Image Preview Function
+function previewImage(input) {
+  const preview = document.getElementById('image-preview');
+  const previewImg = document.getElementById('preview-img');
+  const fileName = document.getElementById('file-name');
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+
+    // Check file size (2MB = 2 * 1024 * 1024 bytes)
+    if (file.size > 2 * 1024 * 1024) {
+      alert('ไฟล์รูปต้องมีขนาดไม่เกิน 2MB');
+      input.value = '';
+      preview.style.display = 'none';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      previewImg.src = e.target.result;
+      fileName.textContent = '📎 ' + file.name + ' (' + (file.size / 1024).toFixed(2) + ' KB)';
+      preview.style.display = 'block';
+
+      // Save file name to localStorage for reference
+      localStorage.setItem('tutor_register_id_card_name', file.name);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Add Qualification Function
 function addQualification() {
   const container = document.getElementById('qualifications-container');
   const item = document.createElement('div');
   item.className = 'dynamic-item qualification-item';
 
   item.innerHTML = `
-    <button type="button" class="remove-btn" onclick="this.parentElement.remove()">ลบ</button>
+    <button type="button" class="remove-btn" onclick="this.parentElement.remove(); saveFormData();">ลบ</button>
 
     <div class="form-row">
       <div class="form-group">
         <label>ระดับการศึกษา <span class="req">*</span></label>
-        <select name="qualifications[${qualificationCount}][degree_level]" required>
+        <select name="qualifications[${qualificationCount}][degree_level]" required onchange="saveFormData()">
           <option value="">เลือก...</option>
           <option value="bachelor">ปริญญาตรี</option>
           <option value="master">ปริญญาโท</option>
           <option value="phd">ปริญญาเอก</option>
           <option value="certificate">ประกาศนียบัตร</option>
           <option value="diploma">อนุปริญญา</option>
+          <option value="other">อื่นๆ</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>สาขาวิชา <span class="req">*</span></label>
-        <input type="text" name="qualifications[${qualificationCount}][field_of_study]" required>
+        <input type="text" name="qualifications[${qualificationCount}][field_of_study]" required oninput="saveFormData()">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label>สถาบันการศึกษา <span class="req">*</span></label>
-        <input type="text" name="qualifications[${qualificationCount}][institution]" required>
+        <input type="text" name="qualifications[${qualificationCount}][institution]" required oninput="saveFormData()">
       </div>
 
       <div class="form-group">
         <label>GPA <span class="req">*</span></label>
-        <input type="text" name="qualifications[${qualificationCount}][gpa]" pattern="[0-4]\\.\\d{2}" placeholder="0.00" inputmode="decimal" required>
-        <small>รูปแบบ: x.xx (เช่น 3.50)</small>
+        <input type="number" name="qualifications[${qualificationCount}][gpa]" min="0" max="4" step="0.01" placeholder="เช่น 3.5 หรือ 3.50" required oninput="saveFormData()">
       </div>
     </div>
   `;
 
   container.appendChild(item);
   qualificationCount++;
+  saveFormData();
 }
 
+// Add Subject Function
 function addSubject() {
   const container = document.getElementById('subjects-container');
   const item = document.createElement('div');
   item.className = 'dynamic-item subject-item';
 
   item.innerHTML = `
-    <button type="button" class="remove-btn" onclick="this.parentElement.remove()">ลบ</button>
+    <button type="button" class="remove-btn" onclick="this.parentElement.remove(); saveFormData();">ลบ</button>
 
     <div class="form-row">
       <div class="form-group">
         <label>วิชา <span class="req">*</span></label>
-        <input type="text" name="subjects[${subjectCount}][subject_name]" placeholder="เช่น ภาษาอังกฤษพื้นฐาน, IELTS, TOEIC" required>
+        <input type="text" name="subjects[${subjectCount}][subject_name]" placeholder="เช่น ภาษาอังกฤษพื้นฐาน, IELTS, TOEIC" required oninput="saveFormData()">
       </div>
 
       <div class="form-group">
         <label>อัตราค่าสอน (บาท/ชั่วโมง) <span class="req">*</span></label>
-        <input type="number" name="subjects[${subjectCount}][hourly_rate]" min="0" step="0.01" required>
+        <input type="number" name="subjects[${subjectCount}][hourly_rate]" min="0" step="0.01" required oninput="saveFormData()">
       </div>
     </div>
 
     <div class="form-group full">
       <label>รายละเอียดเพิ่มเติม</label>
-      <textarea name="subjects[${subjectCount}][description]"></textarea>
+      <textarea name="subjects[${subjectCount}][description]" oninput="saveFormData()"></textarea>
     </div>
   `;
 
   container.appendChild(item);
   subjectCount++;
+  saveFormData();
 }
+
+// Auto-save to localStorage
+function saveFormData() {
+  const form = document.querySelector('form');
+  const formData = new FormData(form);
+  const data = {};
+
+  for (let [key, value] of formData.entries()) {
+    // Don't save passwords or file
+    if (key === 'password' || key === 'password_confirmation' || key === 'id_card_image') {
+      continue;
+    }
+    data[key] = value;
+  }
+
+  localStorage.setItem('tutor_register_draft', JSON.stringify(data));
+
+  // Show save indicator
+  const saveIndicator = document.getElementById('save-indicator');
+  if (saveIndicator) {
+    saveIndicator.textContent = '✓ บันทึกอัตโนมัติแล้ว';
+    saveIndicator.style.color = '#4CAF50';
+    setTimeout(() => {
+      saveIndicator.textContent = '';
+    }, 2000);
+  }
+}
+
+// Restore from localStorage on page load
+function restoreFormData() {
+  // Only restore if there's no old() data (no validation errors)
+  const hasOldData = {{ old('email') ? 'true' : 'false' }};
+  if (hasOldData) {
+    return; // Don't restore from localStorage if we have old() data
+  }
+
+  const savedData = localStorage.getItem('tutor_register_draft');
+  if (!savedData) return;
+
+  try {
+    const data = JSON.parse(savedData);
+    const form = document.querySelector('form');
+
+    for (let [key, value] of Object.entries(data)) {
+      const input = form.querySelector(`[name="${key}"]`);
+      if (input) {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          if (input.value === value) {
+            input.checked = true;
+          }
+        } else {
+          input.value = value;
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Error restoring form data:', e);
+  }
+}
+
+// Clear localStorage after successful submission
+function clearFormData() {
+  localStorage.removeItem('tutor_register_draft');
+  localStorage.removeItem('tutor_register_id_card_name');
+}
+
+// Auto-save on input change
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+
+  // Restore data on load
+  restoreFormData();
+
+  // Check if there's a saved file name
+  const savedFileName = localStorage.getItem('tutor_register_id_card_name');
+  if (savedFileName) {
+    const fileName = document.getElementById('file-name');
+    if (fileName) {
+      fileName.textContent = '⚠️ กรุณาเลือกไฟล์ใหม่: ' + savedFileName;
+      document.getElementById('image-preview').style.display = 'block';
+    }
+  }
+
+  // Add auto-save to all inputs
+  const inputs = form.querySelectorAll('input:not([type="password"]):not([type="file"]), textarea, select');
+  inputs.forEach(input => {
+    input.addEventListener('input', saveFormData);
+    input.addEventListener('change', saveFormData);
+  });
+
+  // Clear localStorage on successful submission
+  form.addEventListener('submit', function(e) {
+    // We'll clear it after successful submission
+    // For now, just show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ กำลังส่งข้อมูล...';
+  });
+});
 </script>
+
+<!-- Add save indicator -->
+<div id="save-indicator" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-size: 14px;"></div>
 
 @endsection

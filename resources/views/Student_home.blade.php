@@ -38,14 +38,33 @@
 <section class="reviews">
   <div class="container">
     <h2>เสียงจากผู้เรียน EngBuddy</h2>
-    <div class="review-scroll">
-      <img src="{{ asset('images/review1.png') }}">
-      <img src="{{ asset('images/review2.png') }}">
-      <img src="{{ asset('images/review3.png') }}">
-      <img src="{{ asset('images/review4.png') }}">
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-btn-prev" aria-label="Previous">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 1"></div>
+          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 2"></div>
+          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 3"></div>
+          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 4"></div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-btn-next" aria-label="Next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
+
+
+
+
+
 
 
 
@@ -56,11 +75,11 @@
     <table>
       <thead><tr><th>ระดับชั้น</th><th>เริ่มต้น (บาท/ชม.)</th></tr></thead>
       <tbody>
-        <tr><td>อนุบาล</td><td>150</td></tr>
-        <tr><td>ประถม</td><td>200</td></tr>
-        <tr><td>มัธยมต้น</td><td>225</td></tr>
-        <tr><td>มัธยมปลาย</td><td>250</td></tr>
-        <tr><td>มหาวิทยาลัย</td><td>300</td></tr>
+        <tr><td>อนุบาล</td><td>180</td></tr>
+        <tr><td>ประถม</td><td>220</td></tr>
+        <tr><td>มัธยมต้น</td><td>250</td></tr>
+        <tr><td>มัธยมปลาย</td><td>300</td></tr>
+        <tr><td>มหาวิทยาลัย</td><td>350</td></tr>
       </tbody>
     </table>
   </div>
@@ -70,16 +89,60 @@
 <section class="contact" id="contact">
   <div class="container">
     <h2>วิธีการสมัครเรียนกับ EngBuddy</h2>
-    <div class="contact-box">
-      <img src="{{ asset('images/line_qr_sample.png') }}" alt="QR Line EngBuddy" style="width: 250px; height: 250px; border: 3px solid #06C755; border-radius: 15px; padding: 10px; background: white;">
-      <div class="steps">
-        <p><strong>①</strong> สมัครเรียนผ่าน LINE ID : <span>@EngBuddy</span></p>
-        <p><strong>②</strong> แจ้งรายวิชาที่ต้องการเรียนและยืนยันข้อมูล</p>
-        <p><strong>③</strong> เจ้าหน้าที่คัดเลือกและเสนอครูผู้สอนให้คุณ</p>
-        <p><strong>④</strong> ครูติดต่อกลับเพื่อเริ่มเรียน</p>
-        <a href="#" class="btn outline">เงื่อนไขการสมัครเรียน</a>
+    <p class="contact-subtitle">เริ่มต้นเรียนพิเศษภาษาอังกฤษกับเราได้ง่ายๆ ใน 4 ขั้นตอน</p>
+
+    <div class="contact-layout">
+      <!-- QR Code Section -->
+      <div class="qr-section">
+        <div class="qr-card">
+          <div class="qr-header">
+        
+          </div>
+          <img src="{{ asset('images/line_qr_sample.png') }}" alt="QR Line EngBuddy" class="qr-image">
+  
+        </div>
+      </div>
+
+      <!-- Steps Section -->
+      <div class="steps-section">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>เพิ่มเพื่อนผ่าน LINE</h4>
+            <p>สแกน QR Code หรือค้นหา LINE ID: <strong>@EngBuddy</strong></p>
+             <p>หรือติดต่อเบอร์ 0618255910 </p>
+            
+            
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>แจ้งความต้องการ</h4>
+            <p>บอกรายวิชาที่ต้องการเรียน ระดับชั้น และเวลาที่สะดวก</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>รอการจับคู่ครู</h4>
+            <p>เจ้าหน้าที่คัดเลือกและเสนอครูผู้สอนที่เหมาะสมให้คุณ</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>เริ่มเรียนได้เลย</h4>
+            <p>ครูติดต่อกลับและนัดหมายเวลาเพื่อเริ่มการเรียน</p>
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
 </section>
 

@@ -151,18 +151,139 @@
     text-align: center;
     background: #fff;
 }
-.review-scroll {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px 0;
+
+/* Carousel Wrapper */
+.carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 0 60px;
 }
-.review-scroll img {
-    height: 220px;
+
+/* Carousel Container */
+.carousel-container {
+    overflow: hidden;
+    border-radius: 16px;
+    background: linear-gradient(to bottom, rgba(11, 59, 116, 0.02), rgba(247, 250, 255, 0));
+    padding: 10px;
+}
+
+/* Carousel Track */
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+/* Carousel Slide */
+.carousel-slide {
+    flex: 0 0 calc(33.333% - 14px);
+    min-width: calc(33.333% - 14px);
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
     border-radius: 12px;
-    box-shadow: var(--shadow);
-    scroll-snap-align: start;
+    border: 3px solid var(--line);
+    box-shadow: 0 4px 16px rgba(11, 59, 116, 0.12);
+    transition: all 0.3s ease;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--brand), var(--footer-grad-2));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(11, 59, 116, 0.3);
+    color: #fff;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn-prev {
+    left: 0;
+}
+
+.carousel-btn-next {
+    right: 0;
+}
+
+.carousel-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+/* Responsive Design for Carousel */
+@media (max-width: 1024px) {
+    .carousel-slide {
+        flex: 0 0 calc(50% - 10px);
+        min-width: calc(50% - 10px);
+    }
+    .carousel-slide img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        padding: 0 50px;
+    }
+    .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+    }
+    .carousel-slide img {
+        height: 280px;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-wrapper {
+        padding: 0 40px;
+    }
+    .carousel-slide img {
+        height: 240px;
+    }
 }
 
 
@@ -222,30 +343,284 @@
 .contact {
     background: var(--bg);
     padding: 70px 0;
+    text-align: center;
 }
-.contact-box {
+
+.contact h2 {
+    color: var(--brand);
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.contact-subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 auto 50px;
+    max-width: 600px;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* ========== QR Section ========== */
+.qr-section {
+    position: sticky;
+    top: 100px;
+}
+
+.qr-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(11, 59, 116, 0.12);
+    border: 2px solid rgba(102, 126, 234, 0.1);
+    transition: all 0.3s ease;
+}
+
+.qr-card:hover {
+    box-shadow: 0 12px 40px rgba(11, 59, 116, 0.18);
+    transform: translateY(-4px);
+}
+
+.qr-header {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.qr-header h3 {
+    font-size: 20px;
+    color: var(--brand);
+    margin: 0;
+    font-weight: 700;
+}
+
+.qr-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 16px;
+    border: 3px solid #06C755;
+    padding: 12px;
+    background: white;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.qr-id {
+    background: linear-gradient(135deg, #06C755 0%, #00B900 100%);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.qr-id p {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qr-id span {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    display: block;
+}
+
+/* ========== Steps Section ========== */
+.steps-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.step-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 4px 16px rgba(11, 59, 116, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--brand), var(--accent));
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 24px rgba(11, 59, 116, 0.15);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.step-card:hover::before {
+    transform: scaleY(1);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--footer-grad-2));
+    color: white;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
-}
-.contact img {
-    width: 200px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-}
-.steps {
-    max-width: 400px;
-}
-.steps p {
-    margin: 8px 0;
-    color: var(--ink);
-}
-.steps span {
-    color: var(--accent);
+    font-size: 24px;
     font-weight: 700;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.step-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: var(--brand);
+    font-weight: 700;
+}
+
+.step-content p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.step-content strong {
+    color: var(--accent);
+}
+
+/* ========== CTA Section ========== */
+.contact-cta {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.btn-terms {
+    display: inline-block;
+    padding: 14px 32px;
+    background: white;
+    color: var(--brand);
+    border: 2px solid var(--brand);
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(11, 59, 116, 0.1);
+}
+
+.btn-terms:hover {
+    background: var(--brand);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(11, 59, 116, 0.2);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 968px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .qr-section {
+        position: static;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 50px 0;
+    }
+
+    .contact h2 {
+        font-size: 24px;
+    }
+
+    .contact-subtitle {
+        font-size: 14px;
+        margin-bottom: 40px;
+    }
+
+    .qr-card {
+        padding: 24px;
+    }
+
+    .qr-image {
+        max-width: 240px;
+    }
+
+    .step-card {
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .step-content h4 {
+        font-size: 16px;
+    }
+
+    .step-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .qr-card {
+        padding: 20px;
+    }
+
+    .qr-image {
+        max-width: 200px;
+    }
+
+    .step-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .contact-cta {
+        margin-top: 40px;
+    }
+
+    .btn-terms {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
 }
 
 /* หน้าสำหรับนักเรียนสมัคร */
@@ -271,6 +646,82 @@
     border: 2px solid var(--accent);
     border-radius: 8px;
     margin-top: 16px;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.6;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.4s ease-out;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border: 2px solid #10b981;
+    color: #065f46;
+}
+
+.alert-success::before {
+    content: '✓';
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #10b981;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #ef4444;
+    color: #991b1b;
+}
+
+.alert-error::before {
+    content: '⚠';
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.alert ul {
+    margin: 8px 0 0 0;
+    padding: 0 0 0 20px;
+}
+
+.alert li {
+    margin: 4px 0;
 }
 
 .student-form {

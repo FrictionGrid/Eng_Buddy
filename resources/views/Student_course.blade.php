@@ -12,6 +12,32 @@
 
         <div class="courses-modern-grid">
 
+
+               <!-- Grammar & Structure -->
+            <div class="course-modern-card" data-color="green">
+                <div class="course-icon">📚</div>
+                <h3 class="course-title">Grammar</h3>
+                <p class="course-description">ไวยากรณ์ภาษาอังกฤษ เน้นความเข้าใจและการใช้งานจริง</p>
+                <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการพื้นฐานไวยากรณ์แข็งแรง</div>
+            </div>
+
+            <!-- Conversation -->
+            <div class="course-modern-card" data-color="orange">
+                <div class="course-icon">🗣️</div>
+                <h3 class="course-title">Conversation</h3>
+                <p class="course-description">ฝึกพูดภาษาอังกฤษเพื่อการสื่อสารในชีวิตจริง</p>
+                <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการพัฒนาทักษะการพูด</div>
+            </div>
+
+              <!-- English for Kids -->
+            <div class="course-modern-card" data-color="pink">
+                <div class="course-icon">👶</div>
+                <h3 class="course-title">English for Kids</h3>
+                <p class="course-description">ภาษาอังกฤษสำหรับเด็ก สนุก เข้าใจง่าย พื้นฐานแข็งแรง</p>
+                <div class="course-tag">เหมาะสำหรับ: เด็กอายุ 4-12 ปี</div>
+            </div>
+
+
             <!-- TOEIC -->
             <div class="course-modern-card" data-color="blue">
                 <div class="course-icon">💼</div>
@@ -28,37 +54,8 @@
                 <div class="course-tag">เหมาะสำหรับ: ผู้ที่ต้องการเรียนต่อต่างประเทศ</div>
             </div>
 
-            <!-- Grammar & Structure -->
-            <div class="course-modern-card" data-color="green">
-                <div class="course-icon">📚</div>
-                <h3 class="course-title">Grammar</h3>
-                <p class="course-description">ไวยากรณ์ภาษาอังกฤษ เน้นความเข้าใจและการใช้งานจริง</p>
-                <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการพื้นฐานไวยากรณ์แข็งแรง</div>
-            </div>
-
-            <!-- Conversation -->
-            <div class="course-modern-card" data-color="orange">
-                <div class="course-icon">🗣️</div>
-                <h3 class="course-title">Conversation</h3>
-                <p class="course-description">ฝึกพูดภาษาอังกฤษเพื่อการสื่อสารในชีวิตจริง</p>
-                <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการพัฒนาทักษะการพูด</div>
-            </div>
-
-            <!-- Business English -->
-            <div class="course-modern-card" data-color="indigo">
-                <div class="course-icon">💻</div>
-                <h3 class="course-title">Business English</h3>
-                <p class="course-description">ภาษาอังกฤษธุรกิจสำหรับการทำงานและการประชุม</p>
-                <div class="course-tag">เหมาะสำหรับ: ผู้ใช้ภาษาอังกฤษในการทำงาน</div>
-            </div>
-
-            <!-- English for Kids -->
-            <div class="course-modern-card" data-color="pink">
-                <div class="course-icon">👶</div>
-                <h3 class="course-title">English for Kids</h3>
-                <p class="course-description">ภาษาอังกฤษสำหรับเด็ก สนุก เข้าใจง่าย พื้นฐานแข็งแรง</p>
-                <div class="course-tag">เหมาะสำหรับ: เด็กอายุ 4-12 ปี</div>
-            </div>
+         
+           
 
             <!-- TOEFL -->
             <div class="course-modern-card" data-color="red">
@@ -66,6 +63,16 @@
                 <h3 class="course-title">TOEFL</h3>
                 <p class="course-description">เตรียมสอบ TOEFL iBT สำหรับเรียนต่อในอเมริกา</p>
                 <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการเรียนต่อในสหรัฐฯ</div>
+            </div>
+
+         
+
+               <!-- General English -->
+            <div class="course-modern-card" data-color="yellow">
+                <div class="course-icon">🌟</div>
+                <h3 class="course-title">General English</h3>
+                <p class="course-description">ภาษาอังกฤษทั่วไป เหมาะสำหรับผู้เริ่มต้นถึงระดับกลาง</p>
+                <div class="course-tag">เหมาะสำหรับ: ผู้พัฒนาภาษาอังกฤษทั่วไป</div>
             </div>
 
             <!-- Reading & Writing -->
@@ -76,13 +83,15 @@
                 <div class="course-tag">เหมาะสำหรับ: ผู้ต้องการพัฒนาการอ่านเขียน</div>
             </div>
 
-            <!-- General English -->
-            <div class="course-modern-card" data-color="yellow">
-                <div class="course-icon">🌟</div>
-                <h3 class="course-title">General English</h3>
-                <p class="course-description">ภาษาอังกฤษทั่วไป เหมาะสำหรับผู้เริ่มต้นถึงระดับกลาง</p>
-                <div class="course-tag">เหมาะสำหรับ: ผู้พัฒนาภาษาอังกฤษทั่วไป</div>
+                <!-- Business English -->
+            <div class="course-modern-card" data-color="indigo">
+                <div class="course-icon">💻</div>
+                <h3 class="course-title">Business English</h3>
+                <p class="course-description">ภาษาอังกฤษธุรกิจสำหรับการทำงานและการประชุม</p>
+                <div class="course-tag">เหมาะสำหรับ: ผู้ใช้ภาษาอังกฤษในการทำงาน</div>
             </div>
+
+         
 
         </div>
 

@@ -21,9 +21,12 @@
     </select>
     <select id="day" class="select">
       <option value="">ทุกวัน</option>
+        <option value="อาทิตย์">อาทิตย์</option>
       <option value="จันทร์">จันทร์</option>
-      <option value="อาทิตย์">อาทิตย์</option>
+    <option value="จันทร์">อังคาร</option>
       <option value="พุธ">พุธ</option>
+      <option value="พุธ">พฤหัสบดี</option>
+       <option value="พุธ">ศุกร์</option>
       <option value="เสาร์">เสาร์</option>
     </select>
     <select id="sort" class="sort">
