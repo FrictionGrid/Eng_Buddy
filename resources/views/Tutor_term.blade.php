@@ -151,7 +151,7 @@
         <strong>EngBuddy – English Tutor Platform Thailand</strong><br>
         <strong>โทร:</strong> 085-318-7722<br>
         <strong>อีเมล:</strong> support@engbuddy.com<br>
-        <strong>Facebook:</strong> https://facebook.com/engbuddy<br>
+        <strong>TikTok:</strong> @engbuddy<br>
         <strong>Website:</strong> https://engbuddy.com
       </p>
 

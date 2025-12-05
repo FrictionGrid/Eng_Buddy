@@ -523,7 +523,8 @@
         align-items: stretch;
     }
     .btn-line,
-    .btn-fb {
+    .btn-fb,
+    .btn-tiktok {
         width: 100%;
         justify-content: center;
     }
@@ -712,15 +713,18 @@
         margin-bottom: 16px;
     }
     .btn-line,
-    .btn-fb {
+    .btn-fb,
+    .btn-tiktok {
         font-size: 14px;
     }
     .btn-line .icon,
-    .btn-fb .icon {
+    .btn-fb .icon,
+    .btn-tiktok .icon {
         padding: 10px 14px;
     }
     .btn-line span,
-    .btn-fb span {
+    .btn-fb span,
+    .btn-tiktok span {
         padding: 10px 16px;
     }
     .pager button {

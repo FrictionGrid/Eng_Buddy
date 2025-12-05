@@ -370,7 +370,8 @@
     gap: 10px;
 }
 .line-btn,
-.fb-btn {
+.fb-btn,
+.tiktok-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -388,18 +389,28 @@
 .fb-btn {
     background: #1877f2;
 }
+.tiktok-btn {
+    background: #000000;
+}
 .line-btn span,
-.fb-btn span {
+.fb-btn span,
+.tiktok-btn span {
     background: rgba(255, 255, 255, 0.18);
     padding: 3px 8px;
     border-radius: 999px;
     font-size: 13px;
+}
+.tiktok-btn span {
+    background: #EE1D52;
 }
 .line-btn:hover {
     background: #05b34d;
 }
 .fb-btn:hover {
     background: #1565d8;
+}
+.tiktok-btn:hover {
+    background: #EE1D52;
 }
 
 /* ในส่วนหน้า apply */
@@ -1065,7 +1076,8 @@
             padding: 10px 18px;
         }
 
-        .btn-fb {
+        .btn-fb,
+        .btn-tiktok {
             display: flex;
             align-items: center;
             background: #1877f2;
@@ -1078,12 +1090,22 @@
             transition: transform 0.2s ease;
         }
 
+        .btn-tiktok {
+            background: #000000;
+        }
+
         .btn-fb:hover {
             background: #145dbf;
             transform: translateY(-2px);
         }
 
-        .btn-fb .icon {
+        .btn-tiktok:hover {
+            background: #EE1D52;
+            transform: translateY(-2px);
+        }
+
+        .btn-fb .icon,
+        .btn-tiktok .icon {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -1092,7 +1114,8 @@
             border-right: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        .btn-fb span {
+        .btn-fb span,
+        .btn-tiktok span {
             padding: 10px 18px;
         }
 
@@ -1372,6 +1395,9 @@
 }
 .social-btn.fb {
   background: #1877f2;
+}
+.social-btn.tiktok {
+  background: #000000;
 }
 .social-btn:hover {
   transform: translateY(-2px);

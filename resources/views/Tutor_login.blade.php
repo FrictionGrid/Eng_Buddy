@@ -53,7 +53,7 @@
 
             <div class="login-social">
                 <a href="#" class="line-btn">LINE <span>@EngBuddy</span></a>
-                <a href="#" class="fb-btn">Facebook <span>EngBuddy</span></a>
+                <a href="#" class="tiktok-btn">TikTok <span>@EngBuddy</span></a>
             </div>
         </div>
     </section>

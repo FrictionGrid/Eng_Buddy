@@ -141,7 +141,7 @@
                 <h4>ช่องทางการจองงานสอน</h4>
                 <ul>
                     <li>LINE: <a href="#">@EngBuddy</a></li>
-                    <li>Facebook: <a href="#">EngBuddy</a></li>
+                    <li>TikTok: <a href="#">@EngBuddy</a></li>
                 </ul>
             </div>
         </div>
