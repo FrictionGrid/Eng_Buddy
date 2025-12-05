@@ -1,0 +1,295 @@
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Prompt", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+        sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 92vw);
+    margin-inline: auto;
+}
+
+.topbar {
+    background: var(--card);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        var(--accent),
+        var(--accent-2)
+    );
+    display: grid;
+    place-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+    box-shadow: var(--shadow);
+}
+
+.brand-text {
+    font-weight: 800;
+    color: var(--brand);
+    font-size: 18px;
+}
+
+.tagline {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.menu {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--bg);
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.tab {
+    padding: 10px 16px;
+    border-radius: 999px;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.tab.is-active {
+    background: var(--card);
+    box-shadow: var(--shadow);
+}
+
+.login {
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+footer {
+    margin-top: 40px;
+    background: linear-gradient(
+        180deg,
+        var(--footer-grad-1),
+        var(--footer-grad-2)
+    );
+    color: #c7d7f9;
+    padding: 0 16px;
+}
+
+.foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+}
+
+.footer-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        var(--accent),
+        var(--accent-2)
+    );
+    display: grid;
+    place-content: center;
+    color: #fff;
+    font-weight: 900;
+    box-shadow: var(--shadow);
+}
+
+.brand-texttwo {
+    font-weight: 800;
+    color: #fff;
+}
+
+.footer-desc {
+    margin-top: 6px;
+    color: #b6c6ea;
+    font-size: 14px;
+}
+
+.foot h4 {
+    margin: 4px 0 10px;
+    color: #eaf2ff;
+}
+
+.foot ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #c7d7f9;
+}
+
+.foot li {
+    padding: 6px 0;
+}
+
+.copyright {
+    border-top: 1px solid var(--line-strong);
+    padding: 12px 0;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+
+.dropdown {
+    position: relative;
+}
+
+
+.dropbtn {
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: var(--brand);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    font-size: 15px;
+    box-shadow: var(--shadow);
+    transition: all 0.25s ease;
+}
+
+.dropbtn:hover {
+    background: var(--accent);
+}
+
+
+.dropdown-content {
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 6px 0;
+    min-width: 200px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    overflow: hidden;
+    z-index: 999;
+
+
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.25s ease;
+}
+
+
+.dropdown.show .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 18px;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background: var(--bg);
+}
+
+
+.dropdown-content form {
+    margin: 0;
+    padding: 0;
+}
+
+.logout-btn {
+    width: 100%;
+    text-align: left;
+
+    background: transparent;
+    color: var(--ink);
+
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+
+    font-weight: 500;
+    font-size: 15px;
+    font-family: inherit;
+
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+

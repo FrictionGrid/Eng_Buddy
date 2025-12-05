@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan migrate:status:*)",
+      "Bash(/mnt/c/laragon/bin/php/php-8.3.16-Win32-vs16-x64/php.exe artisan migrate:status)",
+      "Bash(/mnt/c/laragon/bin/php/php-8.3.16-Win32-vs16-x64/php.exe artisan route:list:*)",
+      "Bash(/mnt/c/laragon/bin/php/php-8.3.16-Win32-vs16-x64/php.exe artisan storage:link)",
+      "Bash(/mnt/c/laragon/bin/php/php-8.3.16-Win32-vs16-x64/php.exe artisan config:clear:*)",
+      "Bash(/mnt/c/laragon/bin/php/php-8.3.16-Win32-vs16-x64/php.exe artisan:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,19 @@
+    :root {
+      --bg: #f7faff;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --brand: #0b3b74;
+      --line: #e6edf7;
+      --accent: #3b82f6;
+      --accent-2: #60a5fa;
+      --danger: #dc2626;
+      --shadow: 0 6px 24px rgba(9, 30, 66, 0.05);
+      --radius: 16px;
+      --footer-grad-1: #0b3b74;
+      --footer-grad-2: #0a3569;
+      --line-green: #06c755;
+      --fb: #1877f2;
+      --hover: #f8fafc;
+      --line-strong: #1e293b;
+    }
