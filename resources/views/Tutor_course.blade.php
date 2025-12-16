@@ -11,15 +11,15 @@
 
   <div class="controls">
     <label class="search">
-      <input id="q" placeholder="ค้นหา: ประเภท, สถานที่…" />
+      <input id="q" class="search-input" placeholder="ค้นหา: ประเภท, สถานที่…" />
     </label>
-    <select id="category" class="select">
+    <select id="category" class="select filter-dropdown">
       <option value="">ทุกประเภท</option>
     </select>
-    <select id="ageGroup" class="select">
+    <select id="ageGroup" class="select filter-dropdown">
       <option value="">ทุกกลุ่มวัย</option>
     </select>
-    <select id="day" class="select">
+    <select id="day" class="select filter-dropdown">
       <option value="">ทุกวัน</option>
         <option value="อาทิตย์">อาทิตย์</option>
       <option value="จันทร์">จันทร์</option>
@@ -29,7 +29,7 @@
        <option value="พุธ">ศุกร์</option>
       <option value="เสาร์">เสาร์</option>
     </select>
-    <select id="sort" class="sort">
+    <select id="sort" class="sort filter-dropdown">
       <option value="recent">ล่าสุดก่อน</option>
     </select>
   </div>
@@ -234,6 +234,18 @@ document.addEventListener('DOMContentLoaded', function() {
         option.textContent = age;
         ageGroupSelect.appendChild(option);
     });
+
+    // เปลี่ยน placeholder บน mobile
+    function updatePlaceholder() {
+        if (window.innerWidth <= 768) {
+            searchInput.placeholder = "ค้นหา: วิชา, สถานที่, วัน, รหัสงาน…";
+        } else {
+            searchInput.placeholder = "ค้นหา: ประเภท, สถานที่…";
+        }
+    }
+
+    updatePlaceholder();
+    window.addEventListener('resize', updatePlaceholder);
 });
 </script>
 
