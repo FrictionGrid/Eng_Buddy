@@ -41,6 +41,6 @@ class TutorCourseController extends Controller
    
 
         $courses = $query->get();
-        return view('Tutor_course', compact('courses'));
+        return view('tutor_course', compact('courses'));
     }
 }

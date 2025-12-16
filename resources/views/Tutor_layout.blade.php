@@ -37,12 +37,6 @@
 
             <nav class="menu">
 
-                <!-- Hamburger Menu Button (Mobile) -->
-                <button class="hamburger" aria-label="เปิดเมนู">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
 
                 <div class="tabs">
                     <a class="tab" href="/Tutor/home">หน้าแรก</a>
@@ -73,7 +67,12 @@
                     </div>
                 @endauth
 
-
+                <!-- Hamburger Button (Mobile Only) -->
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
             </nav>
         </div>
@@ -85,35 +84,26 @@
             <div class="mobile-menu-header">
                 <div class="brand">
                     <div class="logo">EE</div>
-                    <div>
-                        <div class="brand-text">EngBuddy</div>
-                        <div class="tagline">We are all experts</div>
-                    </div>
+                    <div class="brand-text">EngBuddy</div>
                 </div>
-                <button class="close-menu" aria-label="ปิดเมนู">&times;</button>
+                <button class="close-menu" aria-label="Close menu">&times;</button>
             </div>
-
             <nav class="mobile-menu-nav">
-                <a class="mobile-menu-item" href="/Tutor/home">หน้าแรก</a>
-                <a class="mobile-menu-item" href="/Tutor/course">งานสอนพิเศษทั้งหมด</a>
-                <a class="mobile-menu-item" href="/Tutor/apply">ขั้นตอนการรับงาน</a>
-                <a class="mobile-menu-item" href="/Tutor/register">สมัครติวเตอร์</a>
-
+                <a href="/Tutor/home" class="mobile-menu-item">🏠 หน้าแรก</a>
+                <a href="/Tutor/course" class="mobile-menu-item">💼 งานสอนพิเศษทั้งหมด</a>
+                <a href="/Tutor/apply" class="mobile-menu-item">📝 ขั้นตอนการรับงาน</a>
+                <a href="/Tutor/register" class="mobile-menu-item">✍️ สมัครติวเตอร์</a>
                 @guest
-                    <a class="mobile-menu-item" href="/Tutor/login">เข้าสู่ระบบ</a>
+                    <a href="/Tutor/login" class="mobile-menu-item">🔐 เข้าสู่ระบบ</a>
                 @endguest
-
-                <a class="mobile-menu-item mobile-menu-cta" href="/student/home">สำหรับนักเรียน</a>
-
                 @auth
-                    <a class="mobile-menu-item" href="{{ route('tutor.dashboard') }}">โปรไฟล์</a>
-                    <div class="mobile-menu-item">
-                        <form action="{{ route('tutor.logout') }}" method="POST">
-                            @csrf
-                            <button class="mobile-menu-logout logout-btn" type="submit">ออกจากระบบ</button>
-                        </form>
-                    </div>
+                    <a href="{{ route('tutor.dashboard') }}" class="mobile-menu-item">👤 โปรไฟล์</a>
+                    <form action="{{ route('tutor.logout') }}" method="POST" style="margin:0;">
+                        @csrf
+                        <button type="submit" class="mobile-menu-item mobile-menu-logout">🚪 ออกจากระบบ</button>
+                    </form>
                 @endauth
+                <a href="/student/home" class="mobile-menu-item mobile-menu-cta">🎓 สำหรับนักเรียน</a>
             </nav>
         </div>
     </div>

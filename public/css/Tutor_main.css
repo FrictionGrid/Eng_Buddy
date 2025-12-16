@@ -395,12 +395,13 @@
 .line-btn span,
 .fb-btn span,
 .tiktok-btn span {
+    background: rgba(255, 255, 255, 0.18);
     padding: 3px 8px;
     border-radius: 999px;
     font-size: 13px;
 }
 .tiktok-btn span {
-    background: #000000;
+    background: #EE1D52;
 }
 .line-btn:hover {
     background: #05b34d;
@@ -409,7 +410,7 @@
     background: #1565d8;
 }
 .tiktok-btn:hover {
-    background: #000000;
+    background: #EE1D52;
 }
 
 /* ในส่วนหน้า apply */

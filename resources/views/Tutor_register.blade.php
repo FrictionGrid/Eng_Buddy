@@ -155,6 +155,11 @@
             <input type="text" name="subjects[0][subject_name]" required>
           </div>
 
+          <div class="form-group">
+            <label>อัตราค่าสอน (บาท/ชั่วโมง) <span class="req">*</span></label>
+            <input type="number" name="subjects[0][hourly_rate]" required min="0" step="0.01">
+          </div>
+        </div>
 
         <div class="form-group full">
           <label>รายละเอียดเพิ่มเติม</label>
