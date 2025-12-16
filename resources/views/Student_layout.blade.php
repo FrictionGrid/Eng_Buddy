@@ -8,14 +8,25 @@
 
     <title>@yield('title', 'EngBuddy | หาติวเตอร์ภาษาอังกฤษตัวต่อตัวและออนไลน์ทั่วไทย')</title>
     <meta name="description" content="@yield('meta_description', 'แพลตฟอร์มหาติวเตอร์ภาษาอังกฤษตัวต่อตัวและออนไลน์ทั่วไทย คัดติวเตอร์คุณภาพ ครูผู้เชี่ยวชาญทุกระดับ สะดวก ปลอดภัย และเชื่อถือได้')">
-    <meta name="author" content="EngBuddy - English Tutor Platform Thailand">
-    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="@yield('meta_keywords', 'ติวเตอร์ภาษาอังกฤษ, สอนภาษาอังกฤษ, ครูสอนพิเศษ, เรียนพิเศษอังกฤษ, ติวอังกฤษ, TOEIC, IELTS, Grammar')">
+    <meta name="author" content="@yield('meta_author', 'EngBuddy Team')">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
 
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
+
+    <!-- Preconnect for Performance (Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+
+
+
 
     <link rel="stylesheet" href="{{ asset('css/color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Tutor_layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/Tutor_main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Student_main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
 
@@ -45,33 +56,15 @@
                 </button>
 
                 <div class="tabs">
-                    <a class="tab" href="/Tutor/home">หน้าแรก</a>
-                    <a class="tab" href="/Tutor/course">งานสอนพิเศษทั้งหมด</a>
-                    <a class="tab" href="/Tutor/apply">ขั้นตอนการรับงาน</a>
-                    <a class="tab" href="/Tutor/register">สมัครติวเตอร์</a>
-
-                    @guest
-                        <a class="tab" href="/Tutor/login">เข้าสู่ระบบ</a>
-                    @endguest
+                    <a class="tab" href="/student/home">หน้าแรก</a>
+                    <a class="tab" href="/student/course">หลักสูตร</a>
+                    <a class="tab" href="/student/apply">ขั้นตอนการสมัคร</a>
+                    <a class="tab" href="/student/articles">บทความ</a>
+                    <a class="tab" href="/student/promotion">โปรโมชั่น</a>
                 </div>
 
 
-                <a class="login" href="/student/home">สำหรับนักเรียน</a>
-
-                @auth
-                    <div class="dropdown">
-                        <button class="dropbtn">บัญชีของฉัน ▾</button>
-
-                        <div class="dropdown-content">
-                            <a href="{{ route('tutor.dashboard') }}">โปรไฟล์</a>
-
-                            <form action="{{ route('tutor.logout') }}" method="POST">
-                                @csrf
-                                <button class="logout-btn" type="submit">ออกจากระบบ</button>
-                            </form>
-                        </div>
-                    </div>
-                @endauth
+                <a class="login" href="/Tutor/home">สำหรับติวเตอร์</a>
 
 
 
@@ -94,26 +87,13 @@
             </div>
 
             <nav class="mobile-menu-nav">
-                <a class="mobile-menu-item" href="/Tutor/home">หน้าแรก</a>
-                <a class="mobile-menu-item" href="/Tutor/course">งานสอนพิเศษทั้งหมด</a>
-                <a class="mobile-menu-item" href="/Tutor/apply">ขั้นตอนการรับงาน</a>
-                <a class="mobile-menu-item" href="/Tutor/register">สมัครติวเตอร์</a>
+                <a class="mobile-menu-item" href="/student/home">หน้าแรก</a>
+                <a class="mobile-menu-item" href="/student/course">หลักสูตร</a>
+                <a class="mobile-menu-item" href="/student/apply">ขั้นตอนการสมัคร</a>
+                <a class="mobile-menu-item" href="/student/articles">บทความ</a>
+                <a class="mobile-menu-item" href="/student/promotion">โปรโมชั่น</a>
 
-                @guest
-                    <a class="mobile-menu-item" href="/Tutor/login">เข้าสู่ระบบ</a>
-                @endguest
-
-                <a class="mobile-menu-item mobile-menu-cta" href="/student/home">สำหรับนักเรียน</a>
-
-                @auth
-                    <a class="mobile-menu-item" href="{{ route('tutor.dashboard') }}">โปรไฟล์</a>
-                    <div class="mobile-menu-item">
-                        <form action="{{ route('tutor.logout') }}" method="POST">
-                            @csrf
-                            <button class="mobile-menu-logout logout-btn" type="submit">ออกจากระบบ</button>
-                        </form>
-                    </div>
-                @endauth
+                <a class="mobile-menu-item mobile-menu-cta" href="/Tutor/home">สำหรับติวเตอร์</a>
             </nav>
         </div>
     </div>
@@ -140,18 +120,18 @@
             <div>
                 <h4>ข้อมูลเว็บไซต์</h4>
                 <ul>
-                    <li><a href="/Tutor/home">เกี่ยวกับเรา</a></li>
-                    <li><a href="/Tutor/course">ติดต่อเรา</a></li>
-                    <li><a href="/Tutor/apply">ขั้นตอนการรับงาน</a></li>
-                    <li><a href="/Tutor/register">สมัครติวเตอร์</a></li>
+                    <li><a href="/student/home">เกี่ยวกับเรา</a></li>
+                    <li><a href="/Tutor/course">หลักสูตร</a></li>
+                    <li><a href="/student/apply">ติดต่อเรา</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4>ช่องทางการจองงานสอน</h4>
+                <h4>ช่องทางการติดต่อ</h4>
                 <ul>
+                    <li>Number: 0618255910</li>
                     <li>LINE: <a href="#">@EngBuddy</a></li>
-                    <li>TikTok: <a href="#">@EngBuddy</a></li>
+                    <li>Facebook: <a href="#">EngBuddy</a></li>
                 </ul>
             </div>
         </div>
@@ -164,7 +144,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Dropdown Menu (existing code)
+
     const dropdown = document.querySelector('.dropdown');
     const button = document.querySelector('.dropbtn');
 
@@ -179,13 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Hamburger Menu (new code)
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
     const closeMenu = document.querySelector('.close-menu');
     const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
 
-    // Open mobile menu
     if (hamburger) {
         hamburger.addEventListener('click', function() {
             mobileMenuOverlay.classList.add('active');
@@ -193,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close mobile menu
+
     if (closeMenu) {
         closeMenu.addEventListener('click', function() {
             mobileMenuOverlay.classList.remove('active');
@@ -201,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close when clicking overlay
+  
     if (mobileMenuOverlay) {
         mobileMenuOverlay.addEventListener('click', function(e) {
             if (e.target === mobileMenuOverlay) {
@@ -211,13 +190,90 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close when clicking menu item
+
     mobileMenuItems.forEach(item => {
         item.addEventListener('click', function() {
             mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = '';
         });
     });
+
+    const carouselTrack = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn-prev');
+    const nextBtn = document.querySelector('.carousel-btn-next');
+
+    if (carouselTrack && prevBtn && nextBtn) {
+        const slides = Array.from(carouselTrack.children);
+        const slideWidth = slides[0].getBoundingClientRect().width + 20; 
+        let currentIndex = 0;
+
+
+        const firstClones = slides.slice(0, 3).map(slide => slide.cloneNode(true));
+        const lastClones = slides.slice(-3).map(slide => slide.cloneNode(true));
+
+        firstClones.forEach(clone => carouselTrack.appendChild(clone));
+        lastClones.reverse().forEach(clone => carouselTrack.prepend(clone));
+
+ 
+        const allSlides = Array.from(carouselTrack.children);
+        const totalSlides = allSlides.length;
+        currentIndex = 3; 
+
+
+        carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+
+        function moveCarousel(direction) {
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+
+            if (direction === 'next') {
+                currentIndex++;
+            } else {
+                currentIndex--;
+            }
+
+            carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+
+        carouselTrack.addEventListener('transitionend', () => {
+            if (currentIndex >= totalSlides - 3) {
+                carouselTrack.style.transition = 'none';
+                currentIndex = 3;
+                carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+
+            if (currentIndex <= 2) {
+                carouselTrack.style.transition = 'none';
+                currentIndex = totalSlides - 4;
+                carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+        });
+
+
+        nextBtn.addEventListener('click', () => moveCarousel('next'));
+        prevBtn.addEventListener('click', () => moveCarousel('prev'));
+
+
+        let autoPlayInterval = setInterval(() => moveCarousel('next'), 4000);
+
+
+        carouselTrack.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carouselTrack.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(() => moveCarousel('next'), 4000);
+        });
+
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newSlideWidth = allSlides[0].getBoundingClientRect().width + 20;
+                carouselTrack.style.transition = 'none';
+                carouselTrack.style.transform = `translateX(-${currentIndex * newSlideWidth}px)`;
+            }, 250);
+        });
+    }
 });
 </script>
 
