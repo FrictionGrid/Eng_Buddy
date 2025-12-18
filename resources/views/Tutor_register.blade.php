@@ -169,8 +169,14 @@
         <div class="form-group">
           <label>ประสบการณ์สอนจริง <span class="req">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="has_teaching_experience" value="1" required> มีประสบการณ์</label>
-            <label><input type="radio" name="has_teaching_experience" value="0" required> ไม่มีประสบการณ์</label>
+            <label class="radio-label">
+              <input type="radio" name="has_teaching_experience" value="1" required>
+              <span>มีประสบการณ์</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="has_teaching_experience" value="0" required>
+              <span>ไม่มีประสบการณ์</span>
+            </label>
           </div>
         </div>
 

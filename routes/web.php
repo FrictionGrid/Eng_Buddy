@@ -19,9 +19,8 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ArticleController;
 
-// ==================================================
+
 // Admin Dashboard Routes
-// ==================================================
 Route::prefix('admin')->name('admin.')->group(function () {
     // Authentication routes (ไม่ต้อง login)
     Route::get('login', [AuthController::class, 'showLogin'])->name('login');
@@ -51,11 +50,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Students Management (Read-only)
         Route::get('students', [StudentController::class, 'index'])->name('students.index');
 
-        // Reviews Management (จัดการรูปรีวิวหน้า Student Home)
-        Route::resource('reviews', ReviewController::class)->except(['show']);
+        // Reviews Management
+        Route::resource('reviews', ReviewController::class);
 
-        // Articles Management (จัดการบทความ)
-        Route::resource('articles', ArticleController::class)->except(['show']);
+        // Articles Management
+        Route::resource('articles', ArticleController::class);
     });
 });
 

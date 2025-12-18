@@ -1,6 +1,5 @@
 /* หน้า Register */
 .register-page {
-    padding: 40px 20px;
     background: #f5f7fa;
     min-height: 100vh;
 }
@@ -97,23 +96,57 @@
 
 .radio-group {
     display: flex;
-    gap: 28px;
-    margin-top: 4px;
+    gap: 16px;
+    margin-top: 8px;
 }
 .radio-label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     cursor: pointer;
     font-weight: normal;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+.radio-label:hover {
+    background: #f8f9fa;
+    border-color: #3498db;
+}
+.radio-label:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 .radio-label input[type="radio"] {
-    width: auto !important;
-    margin-right: 10px;
+    width: 18px !important;
+    height: 18px;
+    margin-right: 12px;
     cursor: pointer;
+    flex-shrink: 0;
+    accent-color: #3498db;
+}
+.radio-label:has(input[type="radio"]:focus) {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+.radio-label:has(input[type="radio"]:checked) {
+    background: #e3f2fd;
+    border-color: #3498db;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+}
+.radio-label input[type="radio"]:checked {
+    accent-color: #3498db;
 }
 .radio-label span {
     font-size: 14px;
     color: #2c3e50;
+    user-select: none;
+}
+.radio-label:has(input[type="radio"]:checked) span {
+    color: #1976d2;
+    font-weight: 500;
 }
 
 .terms-box {
@@ -123,45 +156,25 @@
     border: 1px solid #e0e0e0;
     margin-top: 16px;
 }
-.terms-box .checkbox-wrapper {
-    margin-bottom: 16px;
-}
-.terms-box .checkbox-wrapper:last-child {
-    margin-bottom: 0;
-}
-.terms-box .checkbox-label {
-    display: flex;
-    align-items: flex-start;
+.terms-box label {
+    display: block;
+    margin-bottom: 12px;
     cursor: pointer;
-    padding: 14px;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-.terms-box .checkbox-label:hover {
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.terms-box input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px;
-    margin-right: 14px;
-    margin-top: 2px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.terms-box .checkbox-text {
     font-size: 14px;
     line-height: 1.6;
     color: #2c3e50;
     font-weight: normal;
 }
-.terms-box .checkbox-text a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 500;
+.terms-box label:last-child {
+    margin-bottom: 0;
 }
-.terms-box .checkbox-text a:hover {
-    text-decoration: underline;
+.terms-box input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px;
+    margin-right: 10px;
+    margin-top: 0;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 .error-alert {
@@ -1098,9 +1111,7 @@
             transform: translateY(-2px);
         }
 
-        .btn-tiktok:hover {
-            transform: translateY(-2px);
-        }
+   
 
         .btn-fb .icon,
         .btn-tiktok .icon {
@@ -1148,6 +1159,13 @@
   gap: 12px;
   justify-content: center;
   margin-bottom: 30px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.controls .search {
+  display: flex;
 }
 
 .controls .search input {
