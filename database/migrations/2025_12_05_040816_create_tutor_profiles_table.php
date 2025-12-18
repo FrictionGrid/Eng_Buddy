@@ -44,7 +44,7 @@ return new class extends Migration
             $table->text('rejection_reason')->nullable();
             $table->timestamp('suspended_at')->nullable();
             $table->timestamp('approved_at')->nullable();
-            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->unsignedBigInteger('approved_by')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

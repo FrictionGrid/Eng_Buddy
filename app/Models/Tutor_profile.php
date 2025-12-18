@@ -78,9 +78,9 @@ class Tutor_profile extends Model
         return $this->hasMany(tutor_experience::class);
     }
 
- 
+
     public function approver()
     {
-        return $this->belongsTo(User::class, 'approved_by');
+        return $this->belongsTo(DashboardUser::class, 'approved_by');
     }
 }

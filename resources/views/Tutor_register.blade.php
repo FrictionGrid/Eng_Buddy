@@ -192,8 +192,8 @@
         <div class="form-group full">
           <label>ข้อตกลง <span class="req">*</span></label>
           <div class="terms-box">
-            <label><input type="checkbox" name="accept_terms" value="1" required> ยอมรับข้อกำหนดและเงื่อนไข</label>
-            <label><input type="checkbox" name="accept_privacy" value="1" required> ยอมรับนโยบายความเป็นส่วนตัว</label>
+            <label><input type="checkbox" name="accept_terms" value="1" required> ยอมรับ<a href="{{ route('tutor.terms') }}" target="_blank" style="color: #007bff; text-decoration: underline; margin: 0 3px;">ข้อกำหนดและเงื่อนไข</a></label>
+            <label><input type="checkbox" name="accept_privacy" value="1" required> ยอมรับ<a href="{{ route('tutor.privacy') }}" target="_blank" style="color: #007bff; text-decoration: underline; margin: 0 3px;">นโยบายความเป็นส่วนตัว</a></label>
           </div>
         </div>
       </div>

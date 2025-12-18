@@ -11,7 +11,7 @@
           เบอร์โทร  :
       0618255910 <br>
       Facebook :
-      <a href="https://facebook.com/" target="_blank">facebook.com/</a><br>
+      <a href="https://tiktok" target="_blank">tiktok.com/</a><br>
       Line ID :
       <a href="#">@EngBuddy</a>
     </p>

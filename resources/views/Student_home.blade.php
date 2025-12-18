@@ -46,10 +46,15 @@
       </button>
       <div class="carousel-container">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 1"></div>
-          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 2"></div>
-          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 3"></div>
-          <div class="carousel-slide"><img src="{{ asset('/images/line.jpg') }}" alt="Review 4"></div>
+          @forelse($reviews as $review)
+            <div class="carousel-slide">
+              <img src="{{ asset($review->image) }}" alt="Review {{ $loop->iteration }}">
+            </div>
+          @empty
+            <div class="carousel-slide">
+              <img src="{{ asset('/images/line.jpg') }}" alt="No reviews yet">
+            </div>
+          @endforelse
         </div>
       </div>
       <button class="carousel-btn carousel-btn-next" aria-label="Next">
