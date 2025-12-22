@@ -573,7 +573,7 @@
     .btn-line,
     .btn-fb,
     .btn-tiktok {
-        width: 100%;
+        width: 30%;
         max-width: 320px;
         margin: 0 auto;
         justify-content: center;

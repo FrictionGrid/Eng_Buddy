@@ -28,7 +28,7 @@
 
 
             <div class="brand">
-                <div class="logo">EE</div>
+                <div class="logo">EB</div>
                 <div>
                     <div class="tagline">We are all experts</div>
                     <div class="brand-text">EngBuddy</div>
@@ -56,7 +56,6 @@
                 </div>
 
 
-                <a class="login" href="/student/home">สำหรับนักเรียน</a>
 
                 @auth
                     <div class="dropdown">
@@ -103,7 +102,7 @@
                     <a class="mobile-menu-item" href="/Tutor/login">เข้าสู่ระบบ</a>
                 @endguest
 
-                <a class="mobile-menu-item mobile-menu-cta" href="/student/home">สำหรับนักเรียน</a>
+
 
                 @auth
                     <a class="mobile-menu-item" href="{{ route('tutor.dashboard') }}">โปรไฟล์</a>
@@ -125,7 +124,7 @@
         <div class="container foot">
             <div>
                 <div style="display:flex;align-items:center;gap:12px;">
-                    <div class="footer-logo">EE</div>
+                    <div class="footer-logo">EB</div>
                     <div>
                         <div class="brand-texttwo">EngBuddy</div>
                         <div style="color:#b6c6ea;font-size:14px;">We are all experts</div>

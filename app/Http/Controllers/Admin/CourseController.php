@@ -49,12 +49,22 @@ class CourseController extends Controller
             'location' => 'required|string|max:255',
             'day' => 'required|string|max:255',
             'time' => 'required|string|max:255',
-            'rate' => 'required|integer|min:0',
+            'rate' => 'nullable|integer|min:0',
             'status' => 'required|in:ใหม่,ปิดงาน',
+            'gender' => 'nullable|string|max:255',
+            'level' => 'nullable|string|max:255',
+            'school' => 'nullable|string|max:255',
+            'transportation' => 'nullable|string|max:255',
+            'referral_fee' => 'nullable|integer|min:0',
         ]);
 
-        // สร้าง job_code อัตโนมัติ
-        $validated['job_code'] = 'JOB' . strtoupper(uniqid());
+        // สร้าง job_code อัตโนมัติ (job + เลข 4 หลัก = 7 ตัวอักษร)
+        do {
+            $randomNumber = str_pad(rand(1000, 9999), 4, '0', STR_PAD_LEFT);
+            $jobCode = 'job' . $randomNumber;
+        } while (tutor_course::where('job_code', $jobCode)->exists());
+
+        $validated['job_code'] = $jobCode;
 
         tutor_course::create($validated);
 
@@ -85,8 +95,13 @@ class CourseController extends Controller
             'location' => 'required|string|max:255',
             'day' => 'required|string|max:255',
             'time' => 'required|string|max:255',
-            'rate' => 'required|integer|min:0',
+            'rate' => 'nullable|integer|min:0',
             'status' => 'required|in:ใหม่,ปิดงาน',
+            'gender' => 'nullable|string|max:255',
+            'level' => 'nullable|string|max:255',
+            'school' => 'nullable|string|max:255',
+            'transportation' => 'nullable|string|max:255',
+            'referral_fee' => 'nullable|integer|min:0',
         ]);
 
         $course->update($validated);

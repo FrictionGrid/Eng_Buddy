@@ -18,7 +18,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('subject_name');
-            $table->decimal('hourly_rate', 8, 2);
+            $table->decimal('hourly_rate', 8, 2)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

@@ -61,7 +61,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // ==================================================
 // Tutor Part //
 Route::get('/Tutor/home', [TutorHomeController::class, 'index'])->name('tutor.home');
-Route::get('/Tutor/course', [TutorCourseController::class, 'index']);
+Route::get('/Tutor/course', [TutorCourseController::class, 'index'])->name('tutor.course');
+Route::get('/Tutor/course/{id}', [TutorCourseController::class, 'show'])->name('tutor.course.detail');
 Route::get('/Tutor/apply', function () {
     return view('Tutor_apply');
 });

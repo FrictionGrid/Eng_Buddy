@@ -58,7 +58,7 @@ class TutorRegisterController extends Controller
             // Subjects (Array of subjects)
             'subjects' => 'required|array|min:1',
             'subjects.*.subject_name' => 'required|string|max:255',
-            'subjects.*.hourly_rate' => 'required|numeric|min:0|max:9999.99',
+            'subjects.*.hourly_rate' => 'nullable|numeric|min:0|max:9999.99',
             'subjects.*.description' => 'nullable|string',
 
             // Teaching Experience
@@ -107,10 +107,6 @@ class TutorRegisterController extends Controller
             // Subject validation messages
             'subjects.required' => 'กรุณากรอกวิชาที่สอนได้อย่างน้อย 1 วิชา',
             'subjects.*.subject_name.required' => 'กรุณากรอกชื่อวิชา',
-            'subjects.*.hourly_rate.required' => 'กรุณากรอกอัตราค่าสอน',
-            'subjects.*.hourly_rate.numeric' => 'อัตราค่าสอนต้องเป็นตัวเลข',
-            'subjects.*.hourly_rate.min' => 'อัตราค่าสอนต้องมากกว่า 0',
-            'subjects.*.hourly_rate.max' => 'อัตราค่าสอนต้องไม่เกิน 9,999.99 บาท',
 
             // Teaching experience validation messages
             'has_teaching_experience.required' => 'กรุณาระบุว่ามีประสบการณ์สอนหรือไม่',
@@ -187,7 +183,7 @@ class TutorRegisterController extends Controller
                 Tutor_subject::create([
                     'tutor_profile_id' => $tutorProfile->id,
                     'subject_name' => $subject['subject_name'],
-                    'hourly_rate' => $subject['hourly_rate'],
+                    'hourly_rate' => $subject['hourly_rate'] ?? null,
                     'description' => $subject['description'] ?? null,
                 ]);
             }

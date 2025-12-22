@@ -18,6 +18,11 @@ class tutor_course extends Model
         'rate',
         'job_code',
         'status',
+        'gender',
+        'level',
+        'school',
+        'transportation',
+        'referral_fee',
     ];
 
  

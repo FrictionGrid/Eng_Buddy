@@ -43,4 +43,10 @@ class TutorCourseController extends Controller
         $courses = $query->get();
         return view('Tutor_course', compact('courses'));
     }
+
+    public function show($id)
+    {
+        $course = Tutor_course::findOrFail($id);
+        return view('Tutor_course_detail', compact('course'));
+    }
 }

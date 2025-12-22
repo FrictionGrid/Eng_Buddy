@@ -40,6 +40,9 @@
           <div class="form-group">
             <label>รหัสผ่าน <span class="req">*</span></label>
             <input type="password" name="password" required>
+            <small style="display: block; margin-top: 6px; color: #6c757d; font-size: 13px;">
+              รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร ประกอบด้วย ตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และสัญลักษณ์พิเศษ (!@#$% ฯลฯ)
+            </small>
           </div>
         </div>
 

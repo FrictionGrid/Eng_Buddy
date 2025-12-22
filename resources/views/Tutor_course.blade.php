@@ -4,6 +4,52 @@
 
 @section('content')
 
+<style>
+.detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background: var(--footer-grad-1);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+    white-space: nowrap;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    background: var(--footer-grad-1);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.detail-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-btn {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .detail-btn svg {
+        width: 13px;
+        height: 13px;
+        margin-right: 3px;
+    }
+}
+</style>
+
   <div class="page-title">
     <h1>งานสอน (สำหรับติวเตอร์)</h1>
     <p>รวมทุกงานสอนไว้ในตารางเดียว พร้อมตัวช่วยค้นหา</p>
@@ -45,6 +91,7 @@
                         <th>สถานที่สอน</th>
                         <th>วันเรียน</th>
                         <th>รหัสงาน</th>
+                        <th style="text-align: center; width: 110px;">การดำเนินการ</th>
                     </tr>
                 </thead>
                 <tbody id="homepage-courses">
@@ -52,12 +99,7 @@
                     <tr>
                         <td>
                             <strong>{{ $course->subject }}</strong>
-                            @if($course->description)
-                                {{ $course->description }}
-                            @endif
-                            @if($course->rate)
-                                <div style="color:#0a7a2a;font-weight:bold;margin-top:4px;">฿{{ number_format($course->rate) }} / ชม.</div>
-                            @endif
+                          
                         </td>
                         <td>{{ $course->location }}</td>
                         <td>{{ $course->day }} {{ $course->time }}</td>
@@ -65,10 +107,15 @@
                             {{ $course->job_code }}
                             <span class="pill">{{ $course->status }}</span>
                         </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a href="{{ route('tutor.course.detail', $course->id) }}" class="detail-btn">
+                                ดูรายละเอียด
+                            </a>
+                        </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" style="text-align:center;padding:40px;color:#999;">
+                        <td colspan="5" style="text-align:center;padding:40px;color:#999;">
                             ยังไม่มีงานสอนในขณะนี้
                         </td>
                     </tr>

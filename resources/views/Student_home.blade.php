@@ -29,7 +29,7 @@
       <div class="card"><img src="{{ asset('icons/schedule.svg') }}"><h4>เลือกเวลาเรียนได้</h4><p>ยืดหยุ่นตามตารางของคุณ</p></div>
       <div class="card"><img src="{{ asset('icons/tutor.svg') }}"><h4>ติวเตอร์มีคุณภาพ</h4><p>ผ่านการคัดเลือกอย่างเข้มงวด</p></div>
       <div class="card"><img src="{{ asset('icons/pay.svg') }}"><h4>จ่ายเป็นรายครั้ง</h4><p>โปร่งใส ไม่บังคับคอร์ส</p></div>
-      <div class="card"><img src="{{ asset('icons/apply.svg') }}"><h4>สมัครเรียนง่าย</h4><p>เพียงแอดไลน์และกรอกรายละเอียด</p></div>
+      <div class="card"><img src="{{ asset('icons/apply.svg') }}"><h4>สมัครเรียนง่าย</h4><p>เพียงแอดไลน์ หรือโทรติดต่อ</p></div>
     </div>
   </div>
 </section>

@@ -59,7 +59,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
- 
+
 
 
         <div class="card">
@@ -91,13 +91,6 @@
                     @if($tutorProfile->postal_code) {{ $tutorProfile->postal_code }}@endif
                 </div>
             </div>
-
-            @if($tutorProfile->experience)
-            <div class="info-row">
-                <div class="info-label">ประสบการณ์การสอน</div>
-                <div class="info-value">{{ $tutorProfile->experience->years_of_experience ?? 'N/A' }} ปี</div>
-            </div>
-            @endif
 
             @if($tutorProfile->bio)
                 <div class="info-row">
@@ -140,17 +133,51 @@
                 <div class="list-item">
                     <div class="list-item-title">{{ $subject->subject_name }}</div>
 
-                    <div class="list-item-detail">
-                        <strong style="color: #27ae60;">฿{{ number_format($subject->hourly_rate, 0) }}</strong> บาท/ชั่วโมง
-                        @if($subject->description)
-                            <br><span style="color: #7f8c8d;">{{ $subject->description }}</span>
-                        @endif
-                    </div>
+                    @if($subject->description)
+                        <div class="list-item-detail">
+                            <span style="color: #7f8c8d;">{{ $subject->description }}</span>
+                        </div>
+                    @endif
                 </div>
             @empty
                 <div style="text-align: center; padding: 20px; color: #95a5a6;">
                     <p>ยังไม่มีข้อมูลวิชาที่สอน</p>
                 </div>
+            @endforelse
+        </div>
+
+
+        {{-- ประสบการณ์การสอน --}}
+        <div class="card">
+            <h2 class="card-title">ประสบการณ์การสอน</h2>
+
+            @forelse($tutorProfile->experiences as $experience)
+                <div class="info-row">
+                    <div class="info-label">มีประสบการณ์การสอน</div>
+                    <div class="info-value">
+                        @if($experience->has_teaching_experience)
+                            <span style="color: #27ae60;">✓ มี ({{ $experience->teaching_experience_years }} ปี)</span>
+                        @else
+                            <span style="color: #7f8c8d;">ไม่มี</span>
+                        @endif
+                    </div>
+                </div>
+
+                @if($experience->work_experience)
+                    <div class="info-row">
+                        <div class="info-label">ประสบการณ์การทำงาน</div>
+                        <div class="info-value" style="white-space: pre-line;">{{ $experience->work_experience }}</div>
+                    </div>
+                @endif
+
+                @if($experience->additional_info)
+                    <div class="info-row">
+                        <div class="info-label">ข้อมูลเพิ่มเติม</div>
+                        <div class="info-value" style="white-space: pre-line;">{{ $experience->additional_info }}</div>
+                    </div>
+                @endif
+            @empty
+                <p style="color:#7f8c8d;">ยังไม่มีข้อมูลประสบการณ์การสอน</p>
             @endforelse
         </div>
 

@@ -92,8 +92,33 @@
         </div>
 
         <div class="form-group">
-            <label for="rate">ค่าสอน (บาท) *</label>
-            <input type="number" id="rate" name="rate" class="form-control" required>
+            <label for="rate">ค่าสอน (บาท)</label>
+            <input type="number" id="rate" name="rate" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">เพศ</label>
+            <input type="text" id="gender" name="gender" class="form-control" placeholder="เช่น ชาย, หญิง, ไม่ระบุ">
+        </div>
+
+        <div class="form-group">
+            <label for="level">ระดับ</label>
+            <input type="text" id="level" name="level" class="form-control" placeholder="เช่น ม.1, ม.4, ปวช.">
+        </div>
+
+        <div class="form-group">
+            <label for="school">สถานศึกษา</label>
+            <input type="text" id="school" name="school" class="form-control" placeholder="เช่น โรงเรียนสตรีวัดระฆัง">
+        </div>
+
+        <div class="form-group">
+            <label for="transportation">การเดินทาง</label>
+            <input type="text" id="transportation" name="transportation" class="form-control" placeholder="เช่น รถไฟฟ้า MRT, รถประจำทาง">
+        </div>
+
+        <div class="form-group">
+            <label for="referral_fee">ค่าแนะนำ (บาท)</label>
+            <input type="number" id="referral_fee" name="referral_fee" class="form-control">
         </div>
 
         <div class="form-group">
